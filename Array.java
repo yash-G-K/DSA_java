@@ -1,4 +1,6 @@
- import java.util.*;
+
+
+//  import java.util.*;
 
 //                                   arrays and call by reference
  
@@ -137,23 +139,26 @@
 //         printpairs(num);
 //     }
 // }
-
-
 public class Array{
-    public static void printpairs(int num[]){
-        int tp = 0;  //total pairs
-        for(int i=0; i<num.length; i++){
-            int curr = num[i];  //2 46 8
-            for(int j=i+1; j<num.length;j++){
-                System.out.print("(" + curr + "," + num[j] + ")");
-                tp++;
+    public static void subarrays(int num[]){
+        int ts=0;
+        for(int i=0 ;i<num.length ; i++){
+            int start = num[i];
+            for(int j = i ;j<num.length ; j++){
+                int end = j;
+                for(int k =start;k<=end ;k++){
+                    System.out.print(num[k]+" ");
+                }
+                ts++;
+                System.out.println();
             }
             System.out.println();
         }
-        System.out.println("total pairs" +tp);
+        System.out.print("total subarrays = " + ts);
     }
+
     public static void main(String args[]){
         int num[]={1,2,3,6,5,4,9};
-        printpairs(num);
+        subarrays(num);
     }
 }
