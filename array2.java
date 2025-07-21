@@ -119,35 +119,34 @@
 // }
 
 //                                 tarapping rainwater
-public class array2{
-    public static int trapped_water(int height[]){
+public class array2 {
+    public static int trapped_water(int height[]) {
         int n = height.length;
-        //calcuulaate left max boundry -array
-        int leftmax[] =new int[n];
-        leftmax[0]=height[0];
-        for(int i = 1;i<n;i++){
-            leftmax[i]=Math.max(height[i],leftmax[i-1]);
+        // calculate left max boundary array
+        int leftmax[] = new int[n];
+        leftmax[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            leftmax[i] = Math.max(height[i], leftmax[i - 1]);
         }
-        //calculate the right max boundry-aarry
+        // calculate the right max boundary array
         int rightmax[] = new int[n];
-        leftmax[n - 1] = height[n- 1];
-        for(int i=n-2 ; i>=0; i--){
-
-            rightmax[i] = Math.max(height[i],rightmax[i+1]);
+        rightmax[n - 1] = height[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightmax[i] = Math.max(height[i], rightmax[i + 1]);
         }
-        //loop
-        int trappedwater=0;
-        for(int i=0;i<n;i++){
-            int waterlevel=Math.max(height[i],rightmax[i+1]);
-            trappedwater +=waterlevel -height[i];
-
+        // loop to calculate trapped water
+        int trappedwater = 0;
+        for (int i = 0; i < n; i++) {
+            int waterlevel = Math.min(leftmax[i], rightmax[i]);
+            trappedwater += waterlevel - height[i];
         }
         return trappedwater;
-        //waterlevel =min(leftbound - rightbound)
-        //trapped water =waterlevel - height
+        // waterlevel = min(leftbound, rightbound)
+        // trapped water = waterlevel - height
     }
+
     public static void main(String args[]) {
-        int height[] = {4,2,0,6,3,2,5};
-        System.out.println((trapped_water(height)));
+        int height[] = {4, 2, 0, 6, 3, 2, 5};
+        System.out.println(trapped_water(height));
     }
 }
