@@ -122,10 +122,10 @@ public class sorting {
         }
     }
 }
-
 public static void main(String[] args) {
     int arr[] = {1,2,3,1,6,8,2,3,2,2};
     countingsort(arr);
     System.out.println("counting sort =" + Arrays.toString(arr));
+
 }
 }
