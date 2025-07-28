@@ -1,5 +1,11 @@
 
 public class string {
+    public static void printletters(String s) {
+        for(int i =0 ;i < s.length() ; i++) {
+            System.out.print(s.charAt(i) + " ");
+            }
+        System.out.println();
+    }
     public static void main(String[] args) {
         // String str = "Hello, World!"; //1st method
         // System.out.println(str);
@@ -15,10 +21,10 @@ public class string {
 
         // sc.close();
 
-        //      concatination
+        //                         concatination
         String str = "yash";
         String str2 = "kumar";
         String str3 = str + " " + str2;
-        System.out.println(str3);
+        printletters(str3);
     }
 }
