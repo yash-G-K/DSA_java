@@ -30,7 +30,7 @@
 // }
 
 
-
+//                                 palandrome or not
 // public class string {
 //     public static boolean ispalandrome(String str) {
 //         for(int i = 0 ; i < str.length() / 2 ; i++) {
@@ -46,31 +46,62 @@
 //     }
 // }
 
+//                               shortest path
+// public class string {
+//     public static float shortestpath(String str) {
+//         int  x = 0, y = 0;
+//         for(int i = 0 ; i < str.length(); i++) {
+//              char dir = str.charAt(i) ; 
+//              if(dir == 'S'){ //south
+//                 y--;
+//              }
+//              else if(dir == 'N'){//north
+//                 y++;
+//              }
+//              else if(dir == 'E'){//east
+//                 x++;
+//             }
+//             else if(dir == 'W'){//west
+//                 x--;
+//                 }
+//                 }
+//             int X2 =x*x;
+//             int Y2 = y*y;
+//             return (float)Math.sqrt(X2 + Y2);
+// }
+//     public static void main(String[] args) {
+//          String str ="WNEENESENNN";
+//          System.out.println(shortestpath(str));
+//     }
+// }
+
+//                                        substring
+// public class string { //function creted to find substirng
+//     public static String substring(String str,int si,int ei) {
+//         String sub = "  ";
+//         for(int i =si; i<ei;i++){
+//             sub +=str.charAt(i);
+//             }
+//             return sub;
+//         }
+//     public static void main(String[] args) {
+//          String str = "yash kalbhute" ;
+//          System.out.println(substring(str,0,5));
+//          System.out.println(str.substring(0,5));//inbuilt function for substtring
+//     }
+// }
+
+//                                        longest string
 
 public class string {
-    public static float shortestpath(String str) {
-        int  x = 0, y = 0;
-        for(int i = 0 ; i < str.length(); i++) {
-             char dir = str.charAt(i) ; 
-             if(dir == 'S'){ //south
-                y--;
-             }
-             else if(dir == 'N'){//north
-                y++;
-             }
-             else if(dir == 'E'){//east
-                x++;
-            }
-            else if(dir == 'W'){//west
-                x--;
-                }
-                }
-            int X2 =x*x;
-            int Y2 = y*y;
-            return (float)Math.sqrt(X2 + Y2);
-}
     public static void main(String[] args) {
-         String str ="WNEENESENNN";
-         System.out.println(shortestpath(str));
+        String fruits[] = {"banana","apple","mango"};
+        String largest = fruits[0];
+        for(int i = 0 ; i < fruits.length ; i++){
+            if(largest.compareTo(fruits[i])< 0){
+                largest = fruits[i];
+                }
+                }
+                System.out.println(largest);
     }
 }
