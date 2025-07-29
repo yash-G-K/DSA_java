@@ -143,24 +143,39 @@
 
 
 ///                               string compression
-public class string {
-    public static String compress(String str) {
-        String newstr="";
-        for(int i = 0;i <str.length();i++){
-            Integer count = 1;
-            while(i< str.length()-1 && str.charAt(i) == str.charAt(i+1)){
-                count++;
-                i++;
-            }
-            newstr += str.charAt(i);
-            if(count > 1){
-                newstr += count.toString();
-    }
-    }
-    return newstr;
-    }
-    public static void main(String[] args) {
-        String str = "aabcccccaaa" ;
-        System.out.println(compress(str)); //a2b1c5a3
- }
-}
+// public class string {
+//     public static String compress(String str) {
+//         String newstr="";
+//         for(int i = 0;i <str.length();i++){
+//             Integer count = 1;
+//             while(i< str.length()-1 && str.charAt(i) == str.charAt(i+1)){
+//                 count++;
+//                 i++;
+//             }
+//             newstr += str.charAt(i);
+//             if(count > 1){
+//                 newstr += count.toString();
+//     }
+//     }
+//     return newstr;
+//     }
+//     public static void main(String[] args) {
+//         String str = "aabcccccaaa" ;
+//         System.out.println(compress(str)); //a2b1c5a3
+//  }
+// }
+
+
+import java.util.Scanner;
+public class string{
+
+    public static void main(String[]args) {
+        String str=new Scanner(System.in).next();
+        int count=0;for(int i=0;i<str.length();i++) {
+            char ch=str.charAt(i);
+            if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u') {
+                count++;}
+                }
+                System.out.println("count of vowels is :"+count);
+                 }
+                }
