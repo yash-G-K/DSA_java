@@ -117,26 +117,50 @@
 //      }
 // }
 
-//                                 string to uppercase
+// //                                 string first word  to uppercase
+// public class string {
+//     public static StringBuilder touppercase(String str){
+//         StringBuilder sb =new StringBuilder("") ;
+
+//         char ch = Character.toUpperCase(str.charAt(0));
+//         for(int i = 0 ; i < str.length() ; i++){
+//             if(str.charAt(i) == ' ' && i<str.length()-1){
+//                 sb.append(str.charAt(i));
+//                 i++;
+//                 sb.append(Character.toUpperCase(str.charAt(i)));
+//             } else{
+//                 sb.append(str.charAt(i));
+//             }
+
+//     }
+//     return sb;
+//     }
+//     public static void main(String[] args) {
+//         String str = "yash kalbhute i am here" ;
+//     System.out.println(touppercase(str));
+//      }
+// }
+
+
+///                               string compression
 public class string {
-    public static StringBuilder touppercase(String str){
-        StringBuilder sb =new StringBuilder("") ;
-
-        char ch = Character.toUpperCase(str.charAt(0));
-        for(int i = 0 ; i < str.length() ; i++){
-            if(str.charAt(i) == ' ' && i<str.length()-1){
-                sb.append(str.charAt(i));
+    public static String compress(String str) {
+        String newstr="";
+        for(int i = 0;i <str.length();i++){
+            Integer count = 1;
+            while(i< str.length()-1 && str.charAt(i) == str.charAt(i+1)){
+                count++;
                 i++;
-                sb.append(Character.toUpperCase(str.charAt(i)));
-            } else{
-                sb.append(str.charAt(i));
             }
-
+            newstr += str.charAt(i);
+            if(count > 1){
+                newstr += count.toString();
     }
-    return sb;
+    }
+    return newstr;
     }
     public static void main(String[] args) {
-        String str = "yash kalbhute i am here" ;
-    System.out.println(touppercase(str));
-     }
+        String str = "aabcccccaaa" ;
+        System.out.println(compress(str)); //a2b1c5a3
+ }
 }
