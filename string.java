@@ -93,15 +93,26 @@
 
 //                                        longest string
 
+// public class string {
+//     public static void main(String[] args) {
+//         String fruits[] = {"banana","apple","mango"};
+//         String largest = fruits[0];
+//         for(int i = 0 ; i < fruits.length ; i++){
+//             if(largest.compareTo(fruits[i])< 0){
+//                 largest = fruits[i];
+//                 }
+//                 }
+//                 System.out.println(largest);
+//     }
+// }
+
+//                             string builder
 public class string {
     public static void main(String[] args) {
-        String fruits[] = {"banana","apple","mango"};
-        String largest = fruits[0];
-        for(int i = 0 ; i < fruits.length ; i++){
-            if(largest.compareTo(fruits[i])< 0){
-                largest = fruits[i];
-                }
-                }
-                System.out.println(largest);
-    }
+        StringBuilder sb = new StringBuilder("");
+        for(char ch = 'a'; ch <= 'z'; ch++){
+            sb.append(ch);
+        }
+        System.out.println(sb); //abc...xyz
+     }
 }
