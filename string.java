@@ -1,5 +1,4 @@
 
-// public class string {
 //     public static void printletters(String s) {
 //         for(int i =0 ;i < s.length() ; i++) {
 //             System.out.print(s.charAt(i) + " ");
@@ -106,13 +105,38 @@
 //     }
 // }
 
-//                             string builder
+// //                             string builder
+// public class string {
+//     public static void main(String[] args) {
+//         StringBuilder sb = new StringBuilder("");
+//         for(char ch = 'a'; ch <= 'z'; ch++){
+//             sb.append(ch);
+//         }
+//         //O(26)
+//         System.out.println(sb); //abc...xyz
+//      }
+// }
+
+//                                 string to uppercase
 public class string {
+    public static StringBuilder touppercase(String str){
+        StringBuilder sb =new StringBuilder("") ;
+
+        char ch = Character.toUpperCase(str.charAt(0));
+        for(int i = 0 ; i < str.length() ; i++){
+            if(str.charAt(i) == ' ' && i<str.length()-1){
+                sb.append(str.charAt(i));
+                i++;
+                sb.append(Character.toUpperCase(str.charAt(i)));
+            } else{
+                sb.append(str.charAt(i));
+            }
+
+    }
+    return sb;
+    }
     public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder("");
-        for(char ch = 'a'; ch <= 'z'; ch++){
-            sb.append(ch);
-        }
-        System.out.println(sb); //abc...xyz
+        String str = "yash kalbhute i am here" ;
+    System.out.println(touppercase(str));
      }
 }
