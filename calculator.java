@@ -12,8 +12,6 @@ public class calculator{
         System.out.println(" enter operator :");
                char op = sc.next().charAt(0);
 
-
-
             switch(op) {
             case '+' : System.out.println("a+b =" + (a+b));
             break; 
