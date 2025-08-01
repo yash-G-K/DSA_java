@@ -84,17 +84,35 @@
 // }
 
 //                    update ith bit
-public  class bitmanipulation{
-    public static int updateIthBit(int n, int i, int val) {
-        int bitmask = (1 << i);
-        if(val == 0){
-            return n & ~bitmask;
-            }else {
-                return n | bitmask;
-                }
-                }
-                public static void main(String[] args) {
-                    System.out.println(updateIthBit(10, 1, 0));
-                    System.out.println(updateIthBit(10, 1, 1));
-                }
-}
+// public  class bitmanipulation{
+//     public static int updateIthBit(int n, int i, int val) {
+//         int bitmask = (1 << i);
+//         if(val == 0){
+//             return n & ~bitmask;
+//             }else {
+//                 return n | bitmask;
+//                 }
+//                 }
+//                 public static void main(String[] args) {
+//                     System.out.println(updateIthBit(10, 1, 0));
+//                     System.out.println(updateIthBit(10, 1, 1));
+//                 }
+// }
+
+//                                clear last i bit
+ public  class bitmanipulation{
+     public static int clearLastBit(int n,int i) {
+        int bitmask = (~0 <<i);
+        return n & bitmask;
+        }
+        public static void main(String[] args) {
+            System.out.println(clearLastBit(15,2));
+        }
+ }
+
+
+
+
+
+
+
