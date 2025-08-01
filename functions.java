@@ -58,7 +58,8 @@
 //     }
 //  }
 
-                                //binomail coefficient
+  
+//.                          binomail coefficient
 // import java.util.*;
 
 // public class functions {
