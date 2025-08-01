@@ -168,7 +168,7 @@
             return ans;
      }
          public static void main(String[] args) {
-            System.out.println(fastexpo(3,5));
+            System.out.println(fastexpo(5,3));
         }
  }
 
