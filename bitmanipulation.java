@@ -126,14 +126,50 @@
 
 //                    check if  a number is in power or not
 
+//  public  class bitmanipulation{
+//      public static boolean ispoweroftwo (int n) {
+//         return (n & (n-1) )== 0;
+//         }
+//         public static void main(String[] args) {
+//             System.out.println(ispoweroftwo(16));
+//         }
+//  }
+
+//                     count set bits in a number
+
+//  public  class bitmanipulation{
+//      public static int countsetbits(int n) {
+//         int count = 0;
+//         while (n > 0) { 
+//             if((n & 1)  != 0) { //check our lsb
+//                 count++;
+//             }
+//             n = n>>1;
+//         }
+//         return count;
+//      }
+//          public static void main(String[] args) {
+//             System.out.println(countsetbits(15));
+//         }
+//  }
+
+
+//
  public  class bitmanipulation{
-     public static boolean ispoweroftwo (int n) {
-        return (n & (n-1) )== 0;
-        }
-        public static void main(String[] args) {
-            System.out.println(ispoweroftwo(16));
+     public static int fastexpo(int a,int n) {
+        int ans = 1;
+        while (n > 0) {
+            if ((n & 1) != 0) { //check our lsb
+            ans = ans * a;
+            }
+            a = a*a;
+            n = n >> 1;
+            }
+            return ans;
+     }
+         public static void main(String[] args) {
+            System.out.println(fastexpo(3,5));
         }
  }
-
 
 
