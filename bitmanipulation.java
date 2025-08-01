@@ -1,12 +1,10 @@
 //   below there ARE 6 CODES of bit manipulation like and ,or ,XOR,compliment,left shift,right shift
 
-
 // public  class bitmanipulation{
 //     public static void main(String[] args) {
 //         System.out.println(5 & 6);
 // }
 // }
-
 
 // public  class bitmanipulation{
 //     public static void main(String[] args) {
@@ -14,13 +12,11 @@
 // }
 // }
 
-
 // public  class bitmanipulation{
 //     public static void main(String[] args) {
 //         System.out.println(5 ^ 6);
 // }
 // }
-
 
 // public  class bitmanipulation{
 //     public static void main(String[] args) {
@@ -28,20 +24,17 @@
 // }
 // }
 
-
 // public  class bitmanipulation{
 //     public static void main(String[] args) {
 //         System.out.println(5 << 2);
 // }
 // }
 
-
 // public  class bitmanipulation{
 //     public static void main(String[] args) {
 //         System.out.println(6 >> 1);
 // }
 // }
-
 
 
 //                  bit number is even or odd
@@ -62,18 +55,30 @@
 // }
 // }
 
-//                 get ith bit
+//                 set ith bit
+// public  class bitmanipulation{
+//     public static int setIthBit(int n, int i) {
+//         int bitmask = 1 << i;
+//             return n | bitmask;
+//     }
+//     public static void main(String[] args) {
+//           System.out.println(setIthBit(10, 1)); 
+//           System.out.println(setIthBit(10, 2)); 
+//           System.out.println(setIthBit(10, 3)); 
+//           System.out.println(setIthBit(10, 0)); 
+// }
+// }
+
+//                   clear ith bit
+
 public  class bitmanipulation{
-    public static int getIthBit(int n, int i) {
-        int bitmask = 1 << i;
-        if((n & bitmask )== 0){
-            return 0;
-        }else{
-        return 1;
-        }
+    public static int clearIthBit(int n, int i) {
+        int bitmask = ~(1 << i);
+        return n & bitmask;
+        
     }
     public static void main(String[] args) {
-          System.out.println(getIthBit(10, 1)); // 0
-          System.out.println(getIthBit(10, 2)); // 1
+        System.out.println(clearIthBit(10, 1));
+        System.out.println(clearIthBit(10, 2));
 }
 }
