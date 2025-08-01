@@ -71,14 +71,30 @@
 
 //                   clear ith bit
 
-public  class bitmanipulation{
-    public static int clearIthBit(int n, int i) {
-        int bitmask = ~(1 << i);
-        return n & bitmask;
+// public  class bitmanipulation{
+//     public static int clearIthBit(int n, int i) {
+//         int bitmask = ~(1 << i);
+//         return n & bitmask;
         
-    }
-    public static void main(String[] args) {
-        System.out.println(clearIthBit(10, 1));
-        System.out.println(clearIthBit(10, 2));
-}
+//     }
+//     public static void main(String[] args) {
+//         System.out.println(clearIthBit(10, 1));
+//         System.out.println(clearIthBit(10, 2));
+// }
+// }
+
+//                    update ith bit
+public  class bitmanipulation{
+    public static int updateIthBit(int n, int i, int val) {
+        int bitmask = (1 << i);
+        if(val == 0){
+            return n & ~bitmask;
+            }else {
+                return n | bitmask;
+                }
+                }
+                public static void main(String[] args) {
+                    System.out.println(updateIthBit(10, 1, 0));
+                    System.out.println(updateIthBit(10, 1, 1));
+                }
 }
