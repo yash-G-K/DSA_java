@@ -154,7 +154,7 @@
 //  }
 
 
-//
+//.                               fast exponential 
  public  class bitmanipulation{
      public static int fastexpo(int a,int n) {
         int ans = 1;
@@ -171,5 +171,5 @@
             System.out.println(fastexpo(5,3));
         }
  }
-
-
+//
+ 
