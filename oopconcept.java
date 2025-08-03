@@ -114,19 +114,108 @@
 
 //                   encaptulation
 //                  constructor
-public class oopconcept{
-    public static void main(String[] args) {
-        student s1 = new student("yash" , 30);
-        System.out.println(s1.name);
+// public class oopconcept{
+//     public static void main(String[] args) {
+//         student s1 = new student("yash" , 30);
+//         System.out.println(s1.name);
+//     }
+// }
+
+// class student{
+//     String name;
+//     int roll;
+
+//     student(String name, int roll){
+//         this.name = name;
+//         this.roll = roll;
+//     }
+// }
+
+
+// //                 types of constructor
+// public class oopconcept{
+//     public static void main(String[] args) {
+//         student s1 = new student("yash" , 30);
+//         System.out.println(s1.name);
+//         student s2 = new student();
+//         student s3 = new student(30);
+
+
+//     }
+// }
+
+// class student{
+//     String name;
+//     int roll;
+
+// // parameterized constructor  
+//     student(String name, int roll){
+//         this.name = name;
+//         this.roll = roll;
+//     }
+//         student(){
+//             System.out.println("this is called non parameterized constructor");
+//         }
+          
+//         student(int roll){
+//              this.roll = roll;
+//         }
+
+//     }
+
+
+//                        copy constructor
+class Address {
+    String city;
+
+    Address(String city) {
+        this.city = city;
     }
 }
 
-class student{
+class Student {
     String name;
-    int roll;
+    Address address;
 
-    student(String name, int roll){
+    // Constructor
+    Student(String name, Address address) {
         this.name = name;
-        this.roll = roll;
+        this.address = address;
+    }
+
+    // 🔹 Shallow Copy Constructor
+    Student(Student other, boolean shallow) {
+        this.name = other.name;
+        if (shallow) {
+            this.address = other.address; // just reference copy
+        } else {
+            this.address = new Address(other.address.city); // deep copy
+        }
+    }
+
+    void display(String label) {
+        System.out.println(label + " -> Name: " + name + ", City: " + address.city);
+    }
+}
+
+public class oopconcept {
+    public static void main(String[] args) {
+        Address addr = new Address("Pune");
+        Student s1 = new Student("Yash", addr);
+
+        // 🔸 Shallow Copy
+        Student s2 = new Student(s1, true);
+
+        // 🔸 Deep Copy
+        Student s3 = new Student(s1, false);
+
+        // Modify copied objects
+        s2.address.city = "Mumbai";  // affects s1 in shallow copy
+        s3.address.city = "Delhi";   // doesn't affect s1 in deep copy
+
+        // Display all
+        s1.display("Original");
+        s2.display("Shallow Copy");
+        s3.display("Deep Copy");
     }
 }
