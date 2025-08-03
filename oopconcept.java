@@ -279,24 +279,41 @@
 // }
 
 //                   method overloading
-class TestOverloading {
-    void test(int a) {
-        System.out.println("int value: " + a);
-        }
-        void test(int a, int b) {
-            System.out.println("int values: " + a + " " + b);
-            }
-            void test(double a) {
-                System.out.println("double value: " + a);
-                }
-                }
-                public class oopconcept {
-                    public static void main(String[] args) {
-                        TestOverloading obj = new TestOverloading();
-                        obj.test(10);
-                        obj.test(10, 20);
-                        obj.test(10.5);
-                        }
-                        }
+// class TestOverloading {
+//     void test(int a) {
+//         System.out.println("int value: " + a);
+//         }
+//         void test(int a, int b) {
+//             System.out.println("int values: " + a + " " + b);
+//             }
+//             void test(double a) {
+//                 System.out.println("double value: " + a);
+//                 }
+//                 }
+//                 public class oopconcept {
+//                     public static void main(String[] args) {
+//                         TestOverloading obj = new TestOverloading();
+//                         obj.test(10);
+//                         obj.test(10, 20);
+//                         obj.test(10.5);
+//                         }
+//                         }
 
-                        
+
+//                  method or function overridding
+public class oopconcept{
+    public static void main(String[] args) {
+        Deer d = new Deer();
+        d.eats();
+    }
+}
+class Animal {
+    void eats() {
+        System.out.println("Eating");
+    }
+}
+class Deer extends Animal {
+    void eats() {
+        System.out.println("Deer is eating grass");
+    }
+}
