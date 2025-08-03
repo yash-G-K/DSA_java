@@ -67,48 +67,66 @@
 //     }
 // }
 
-//          getters and setters
-class person {
-    // Private fields - encapsulation
-    private String name;
-    private int age;
+// //          getters and setters
+// class person {
+//     // Private fields - encapsulation
+//     private String name;
+//     private int age;
     
-    // Setter for name
-    public void setName(String name) {
-        this.name = name;
-    }
+//     // Setter for name
+//     public void setName(String name) {
+//         this.name = name;
+//     }
     
-    // Getter for name
-    public String getName() {
-        return name;
-    }
+//     // Getter for name
+//     public String getName() {
+//         return name;
+//     }
     
-    // Setter for age
-    public void setAge(int age) {
-        if (age > 0) {  // Basic validation
-            this.age = age;
-        }
-    }
+//     // Setter for age
+//     public void setAge(int age) {
+//         if (age > 0) {  // Basic validation
+//             this.age = age;
+//         }
+//     }
     
-    // Getter for age
-    public int getAge() {
-        return age;
-    }
-}
+//     // Getter for age
+//     public int getAge() {
+//         return age;
+//     }
+// }
 
-// Usage example:
-public class oopconcept {
+// // Usage example:
+// public class oopconcept {
+//     public static void main(String[] args) {
+//         person person = new person();
+        
+//         // Using setters to set values
+//         person.setName("John");
+//         person.setAge(25);
+        
+//         // Using getters to retrieve values
+//         System.out.println("Name: " + person.getName());
+//         System.out.println("Age: " + person.getAge());
+//     }
+// }
+
+
+//                   encaptulation
+//                  constructor
+public class oopconcept{
     public static void main(String[] args) {
-        person person = new person();
-        
-        // Using setters to set values
-        person.setName("John");
-        person.setAge(25);
-        
-        // Using getters to retrieve values
-        System.out.println("Name: " + person.getName());
-        System.out.println("Age: " + person.getAge());
+        student s1 = new student("yash" , 30);
+        System.out.println(s1.name);
     }
 }
 
+class student{
+    String name;
+    int roll;
 
+    student(String name, int roll){
+        this.name = name;
+        this.roll = roll;
+    }
+}
