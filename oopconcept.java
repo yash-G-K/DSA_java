@@ -164,58 +164,117 @@
 //     }
 
 
-//                        copy constructor
-class Address {
-    String city;
+// //                        copy constructor
+// class Address {
+//     String city;
 
-    Address(String city) {
-        this.city = city;
-    }
-}
+//     Address(String city) {
+//         this.city = city;
+//     }
+// }
 
-class Student {
-    String name;
-    Address address;
+// class Student {
+//     String name;
+//     Address address;
 
-    // Constructor
-    Student(String name, Address address) {
-        this.name = name;
-        this.address = address;
-    }
+//     // Constructor
+//     Student(String name, Address address) {
+//         this.name = name;
+//         this.address = address;
+//     }
 
-    // 🔹 Shallow Copy Constructor
-    Student(Student other, boolean shallow) {
-        this.name = other.name;
-        if (shallow) {
-            this.address = other.address; // just reference copy
-        } else {
-            this.address = new Address(other.address.city); // deep copy
-        }
-    }
+//     // 🔹 Shallow Copy Constructor
+//     Student(Student other, boolean shallow) {
+//         this.name = other.name;
+//         if (shallow) {
+//             this.address = other.address; // just reference copy
+//         } else {
+//             this.address = new Address(other.address.city); // deep copy
+//         }
+//     }
 
-    void display(String label) {
-        System.out.println(label + " -> Name: " + name + ", City: " + address.city);
-    }
-}
+//     void display(String label) {
+//         System.out.println(label + " -> Name: " + name + ", City: " + address.city);
+//     }
+// }
 
-public class oopconcept {
+// public class oopconcept {
+//     public static void main(String[] args) {
+//         Address addr = new Address("Pune");
+//         Student s1 = new Student("Yash", addr);
+
+//         // 🔸 Shallow Copy
+//         Student s2 = new Student(s1, true);
+
+//         // 🔸 Deep Copy
+//         Student s3 = new Student(s1, false);
+
+//         // Modify copied objects
+//         s2.address.city = "Mumbai";  // affects s1 in shallow copy
+//         s3.address.city = "Delhi";   // doesn't affect s1 in deep copy
+
+//         // Display all
+//         s1.display("Original");
+//         s2.display("Shallow Copy");
+//         s3.display("Deep Copy");
+//     }
+// }
+
+//                           Destructor
+
+
+//                       inheritnace multi and single and hierarchical
+
+public class oopconcept{
     public static void main(String[] args) {
-        Address addr = new Address("Pune");
-        Student s1 = new Student("Yash", addr);
+        //Single  Inheritance
+        // Fish shark = new Fish();
+        // shark.eat();
 
-        // 🔸 Shallow Copy
-        Student s2 = new Student(s1, true);
+       // multilevel inheritance
+       dog tommy = new dog();
+       tommy.eat();
+       tommy.legs =4 ;
+       System.out.println(tommy.legs);
 
-        // 🔸 Deep Copy
-        Student s3 = new Student(s1, false);
+       bird sparrow = new bird();
+       sparrow.eat();
 
-        // Modify copied objects
-        s2.address.city = "Mumbai";  // affects s1 in shallow copy
-        s3.address.city = "Delhi";   // doesn't affect s1 in deep copy
+}
+}
+class Animal {
+     String color;
 
-        // Display all
-        s1.display("Original");
-        s2.display("Shallow Copy");
-        s3.display("Deep Copy");
+     void eat(){
+        System.out.println("Eating");
+     }  
+
+     void breathe(){
+        System.out.println("Breathing");
+     }
+}
+
+class mammal extends Animal{
+    int legs;
+    void walk(){
+        System.out.println("Walking");  
     }
 }
+
+class dog extends mammal{
+    int tail;
+}
+
+// //Derived class
+class Fish extends Animal{
+    void swim(){
+        System.out.println("Swimming");
+    }
+}
+
+class bird extends Animal{
+    void fly(){
+        System.out.println("Flying");
+        }
+}
+
