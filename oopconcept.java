@@ -225,56 +225,78 @@
 
 //                       inheritnace multi and single and hierarchical
 
-public class oopconcept{
-    public static void main(String[] args) {
-        //Single  Inheritance
-        // Fish shark = new Fish();
-        // shark.eat();
+// public class oopconcept{
+//     public static void main(String[] args) {
+//         //Single  Inheritance
+//         // Fish shark = new Fish();
+//         // shark.eat();
 
-       // multilevel inheritance
-       dog tommy = new dog();
-       tommy.eat();
-       tommy.legs =4 ;
-       System.out.println(tommy.legs);
+//        // multilevel inheritance
+//        dog tommy = new dog();
+//        tommy.eat();
+//        tommy.legs =4 ;
+//        System.out.println(tommy.legs);
 
-       bird sparrow = new bird();
-       sparrow.eat();
+//        bird sparrow = new bird();
+//        sparrow.eat();
 
-}
-}
-class Animal {
-     String color;
+// }
+// }
+// class Animal {
+//      String color;
 
-     void eat(){
-        System.out.println("Eating");
-     }  
+//      void eat(){
+//         System.out.println("Eating");
+//      }  
 
-     void breathe(){
-        System.out.println("Breathing");
-     }
-}
+//      void breathe(){
+//         System.out.println("Breathing");
+//      }
+// }
 
-class mammal extends Animal{
-    int legs;
-    void walk(){
-        System.out.println("Walking");  
-    }
-}
+// class mammal extends Animal{
+//     int legs;
+//     void walk(){
+//         System.out.println("Walking");  
+//     }
+// }
 
-class dog extends mammal{
-    int tail;
-}
+// class dog extends mammal{
+//     int tail;
+// }
 
-// //Derived class
-class Fish extends Animal{
-    void swim(){
-        System.out.println("Swimming");
-    }
-}
+// // //Derived class
+// class Fish extends Animal{
+//     void swim(){
+//         System.out.println("Swimming");
+//     }
+// }
 
-class bird extends Animal{
-    void fly(){
-        System.out.println("Flying");
+// class bird extends Animal{
+//     void fly(){
+//         System.out.println("Flying");
+//         }
+// }
+
+//                   method overloading
+class TestOverloading {
+    void test(int a) {
+        System.out.println("int value: " + a);
         }
-}
+        void test(int a, int b) {
+            System.out.println("int values: " + a + " " + b);
+            }
+            void test(double a) {
+                System.out.println("double value: " + a);
+                }
+                }
+                public class oopconcept {
+                    public static void main(String[] args) {
+                        TestOverloading obj = new TestOverloading();
+                        obj.test(10);
+                        obj.test(10, 20);
+                        obj.test(10.5);
+                        }
+                        }
 
+                        
