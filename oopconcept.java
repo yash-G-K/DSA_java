@@ -301,19 +301,75 @@
 
 
 //                  method or function overridding
-public class oopconcept{
+// public class oopconcept{
+//     public static void main(String[] args) {
+//         Deer d = new Deer();
+//         d.eats();
+//     }
+// }
+// class Animal {
+//     void eats() {
+//         System.out.println("Eating");
+//     }
+// }
+// class Deer extends Animal {
+//     void eats() {
+//         System.out.println("Deer is eating grass");
+//     }
+// }
+
+//                  packages in java
+//               inbuilt packages and user defined packages
+
+
+//                       abstract 
+
+public class oopconcept {
     public static void main(String[] args) {
-        Deer d = new Deer();
-        d.eats();
-    }
+    Deer d = new Deer();
+    d.eats();
+    d.walk();
+    System.out.println(d.color);
+
+    chicken c = new chicken();
+    c.eats();
+    c.walk();
 }
-class Animal {
-    void eats() {
+}
+
+abstract class Animal {
+    String color;
+
+    Animal(){
+        color = "black";
+        System.out.println("Animal constructor called");
+    }
+    void eats(){
         System.out.println("Eating");
     }
-}
-class Deer extends Animal {
-    void eats() {
-        System.out.println("Deer is eating grass");
+    abstract void walk();
     }
+    
+    class Deer extends Animal {
+        Deer(){
+            System.out.println("Deer constructor called");
+        }
+        void changecolor(){
+            color = "brown";
+        }
+        void walk() {  
+            System.out.println("Deer is walking");
+            }
+    }
+
+class chicken extends  Animal {
+    chicken(){
+        System.out.println("chicken constructor called");
+        }
+      void changecolor(){
+            color = "Yellow";
+        }
+    void walk() {
+        System.out.println("Chicken is walking");
+        }
 }
