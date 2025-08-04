@@ -324,52 +324,83 @@
 
 //                       abstract 
 
-public class oopconcept {
-    public static void main(String[] args) {
-    Deer d = new Deer();
-    d.eats();
-    d.walk();
-    System.out.println(d.color);
+// public class oopconcept {
+//     public static void main(String[] args) {
+//     Deer d = new Deer();
+//     d.eats();
+//     d.walk();
+//     System.out.println(d.color);
 
-    chicken c = new chicken();
-    c.eats();
-    c.walk();
-}
-}
+//     chicken c = new chicken();
+//     c.eats();
+//     c.walk();
+// }
+// }
 
-abstract class Animal {
-    String color;
+// abstract class Animal {
+//     String color;
 
-    Animal(){
-        color = "black";
-        System.out.println("Animal constructor called");
-    }
-    void eats(){
-        System.out.println("Eating");
-    }
-    abstract void walk();
-    }
+//     Animal(){
+//         color = "black";
+//         System.out.println("Animal constructor called");
+//     }
+//     void eats(){
+//         System.out.println("Eating");
+//     }
+//     abstract void walk();
+//     }
     
-    class Deer extends Animal {
-        Deer(){
-            System.out.println("Deer constructor called");
-        }
-        void changecolor(){
-            color = "brown";
-        }
-        void walk() {  
-            System.out.println("Deer is walking");
-            }
-    }
+//     class Deer extends Animal {
+//         Deer(){
+//             System.out.println("Deer constructor called");
+//         }
+//         void changecolor(){
+//             color = "brown";
+//         }
+//         void walk() {  
+//             System.out.println("Deer is walking");
+//             }
+//     }
 
-class chicken extends  Animal {
-    chicken(){
-        System.out.println("chicken constructor called");
-        }
-      void changecolor(){
-            color = "Yellow";
-        }
-    void walk() {
-        System.out.println("Chicken is walking");
-        }
+// class chicken extends  Animal {
+//     chicken(){
+//         System.out.println("chicken constructor called");
+//         }
+//       void changecolor(){
+//             color = "Yellow";
+//         }
+//     void walk() {
+//         System.out.println("Chicken is walking");
+//         }
+// }
+
+
+
+///                       interfaces
+
+public class oopconcept{
+    public static void main(String[] args) {
+        Queen q = new Queen();
+        q.moves();
+
+}}
+interface chessplayers {
+    void moves();
 }
+class Queen implements chessplayers {
+    public void moves() {
+        System.out.println("Up, down,left,right,diagonal (all directions)");
+        }
+        }
+        class Rook implements chessplayers {
+            public void moves() {
+                System.out.println("Horizontal and vertical directions");
+                }
+                }
+                class King implements chessplayers {
+                    public void moves() {
+                        System.out.println("One square in all directions");
+                        }
+                        }
+
+    
