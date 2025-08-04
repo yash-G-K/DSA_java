@@ -378,29 +378,77 @@
 
 ///                       interfaces
 
-public class oopconcept{
+// public class oopconcept{
+//     public static void main(String[] args) {
+//         Queen q = new Queen();
+//         q.moves();
+
+// }}
+// interface chessplayers {
+//     void moves();
+// }
+// class Queen implements chessplayers {
+//     public void moves() {
+//         System.out.println("Up, down,left,right,diagonal (all directions)");
+//         }
+//         }
+//         class Rook implements chessplayers {
+//             public void moves() {
+//                 System.out.println("Horizontal and vertical directions");
+//                 }
+//                 }
+//                 class King implements chessplayers {
+//                     public void moves() {
+//                         System.out.println("One square in all directions");
+//                         }
+//                         }
+
+
+
+//                       static keyword
+public class oopconcept { // The public class name must match the file name
+    // Static variable for school name - shared by all Student objects
+    static String schoolName = "ABC Public School";
+
+    // Instance variables - unique for each Student object
+    String studentName;
+    int studentID;
+    String grade;
+
+    // Constructor to initialize instance variables
+    public oopconcept(String studentName, int studentID, String grade) {
+        this.studentName = studentName;
+        this.studentID = studentID;
+        this.grade = grade;
+    }
+
+    // Method to display student information
+    public void displayStudentInfo() {
+        System.out.println("Student Name: " + this.studentName);
+        System.out.println("Student ID: " + this.studentID);
+        System.out.println("Grade: " + this.grade);
+        System.out.println("School: " + oopconcept.schoolName); // Accessing static variable using class name
+        System.out.println("--------------------");
+    }
+
     public static void main(String[] args) {
-        Queen q = new Queen();
-        q.moves();
+        // Create instances of the oopconcept class
+        oopconcept student1 = new oopconcept("Alice", 101, "10th");
+        oopconcept student2 = new oopconcept("Bob", 102, "9th");
+        oopconcept student3 = new oopconcept("Charlie", 103, "11th");
 
-}}
-interface chessplayers {
-    void moves();
+        // Display information for each student
+        student1.displayStudentInfo();
+        student2.displayStudentInfo();
+        student3.displayStudentInfo();
+
+        // You can also access the static schoolName directly using the class name
+        System.out.println("Global School Name: " + oopconcept.schoolName);
+
+        // If you change the static variable, it affects all instances
+        oopconcept.schoolName = "XYZ International School";
+        System.out.println("\n--- School Name Changed ---");
+
+        student1.displayStudentInfo(); // Alice now also belongs to XYZ International School
+    }
 }
-class Queen implements chessplayers {
-    public void moves() {
-        System.out.println("Up, down,left,right,diagonal (all directions)");
-        }
-        }
-        class Rook implements chessplayers {
-            public void moves() {
-                System.out.println("Horizontal and vertical directions");
-                }
-                }
-                class King implements chessplayers {
-                    public void moves() {
-                        System.out.println("One square in all directions");
-                        }
-                        }
-
-    
