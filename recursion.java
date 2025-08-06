@@ -2,15 +2,28 @@
 // print no from n to 1 (decreasing order)
 
 public class recursion{
-    public static void numbers(int n) {
-        if (n == 0) {
+    public static void numbersdec(int n) {
+        if (n == 1) {
+            System.out.print(n);
             return;
     }
     System.out.print(n +" ");
-    numbers(n-1);
+    numbersdec(n-1);
+    }
+
+    public static void num_inc(int n) {
+            if (n == 1) {
+                System.out.print(n);
+            return;
+    }
+        num_inc(n-1);
+        System.out.print(n +" ");
+
+        
     }
     public static void main(String[] args) {
         int n = 10;
-        numbers(n);
+        numbersdec(n);
+        num_inc(n);
 }
 }
