@@ -7,7 +7,6 @@ class Complex {
         real = r;
         imag = i;
     }
-
     public static Complex add(Complex a, Complex b) {
         return new Complex(a.real + b.real, a.imag + b.imag);
     }
