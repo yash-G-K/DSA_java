@@ -1,6 +1,6 @@
 //                      recursion
-// print no from n to 1 (decreasing order)
 
+// print no from n to 1 (decreasing order)
 public class recursion{
     public static void numbersdec(int n) {
         if (n == 1) {
