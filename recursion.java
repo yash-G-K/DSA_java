@@ -175,7 +175,7 @@ public class recursion {
                 int halfpowersq = halfpower * halfpower;
 
                 if(b%2 != 0) {
-                     halfpowersq = a * halfpower * halfpower;
+                     halfpowersq = a * halfpowersq;
                     }
                     return halfpowersq;
                     }
