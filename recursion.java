@@ -148,17 +148,41 @@
 
 
 //power of a number using recursion
- public class recursion {
+//  public class recursion {
+//     public static void main(String[] args) {
+//         System.out.println(power(2, 3));
+//         }
+//         public static int power(int a, int b) {
+//             if(b == 0) {
+//                 return 1;
+//                 }
+//                 return a * power(a, b-1);
+//                 }
+//                 }
+
+
+
+//  x^n in time complexity of O(logn) using recursion
+public class recursion {
     public static void main(String[] args) {
-        System.out.println(power(2, 3));
+        System.out.println(optimizedpower(2, 3));
         }
-        public static int power(int a, int b) {
+        public static int optimizedpower(int a, int b) {
             if(b == 0) {
                 return 1;
                 }
-                return a * power(a, b-1);
-                }
-                }
+                int halfpower = optimizedpower(a , b/2);
+                int halfpowersq = halfpower * halfpower;
+
+                if(b%2 != 0) {
+                     halfpowersq = a * halfpower * halfpower;
+                    }
+                    return halfpowersq;
+                    }
+                    }
+    
+
+
 
 
 
