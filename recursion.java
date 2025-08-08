@@ -67,22 +67,42 @@
 
 
 // print nth fibonacci number using recursion
-public class recursion{
-    public static void main(String[] args) {
-        int n = 10;
-        System.out.println("Fibonacci number at position " + n + " is " + fibonacci(n));
+// public class recursion{
+//     public static void main(String[] args) {
+//         int n = 10;
+//         System.out.println("Fibonacci number at position " + n + " is " + fibonacci(n));
         
-}
-public static int fibonacci(int n) {
-    if (n == 0) {
-        return 0;
+// }
+// public static int fibonacci(int n) {
+//     if (n == 0) {
+//         return 0;
+//         }
+//         if (n == 1) {
+//             return 1;
+//         }
+//         int fibnm2 = fibonacci(n-2);
+//         int fibnm1 = fibonacci(n-1);
+//         int fibn = fibnm2 + fibnm1;
+//         return fibn;
+//         }
+//         }
+
+
+ 
+// array is sorted or not using recursion
+ public class recursion {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5};
+        System.out.println(isSorted(arr, 0));
         }
-        if (n == 1) {
-            return 1;
+        public static boolean isSorted(int[] arr, int i) {
+            if(i == arr.length-1){
+                return true;
+            }
+            if(arr[i] > arr[i+1]){
+                return false;
+           
         }
-        int fibnm2 = fibonacci(n-2);
-        int fibnm1 = fibonacci(n-1);
-        int fibn = fibnm2 + fibnm1;
-        return fibn;
+        return isSorted(arr, i+1);
         }
-        }
+ }
