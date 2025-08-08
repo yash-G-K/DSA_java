@@ -50,17 +50,39 @@
 
 
 //       print sum of n natural numbers
-public class recursion {
+// public class recursion {
+//     public static void main(String[] args) {
+//         int n = 10;
+//         System.out.println("Sum of " + n + " natural numbers is " + sum(n));
+//         }
+//         public static int sum(int n) {
+//             if (n == 1) {
+//                 return 1;
+//                 }
+//                 int sum1 = sum(n-1);
+//                 int sum = n + sum(n-1);
+//                 return sum;
+//         }
+//}
+
+
+// print nth fibonacci number using recursion
+public class recursion{
     public static void main(String[] args) {
         int n = 10;
-        System.out.println("Sum of " + n + " natural numbers is " + sum(n));
-        }
-        public static int sum(int n) {
-            if (n == 1) {
-                return 1;
-                }
-                int sum1 = sum(n-1);
-                int sum = n + sum(n-1);
-                return sum;
-        }
+        System.out.println("Fibonacci number at position " + n + " is " + fibonacci(n));
+        
 }
+public static int fibonacci(int n) {
+    if (n == 0) {
+        return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        int fibnm2 = fibonacci(n-2);
+        int fibnm1 = fibonacci(n-1);
+        int fibn = fibnm2 + fibnm1;
+        return fibn;
+        }
+        }
