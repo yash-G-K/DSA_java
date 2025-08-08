@@ -110,18 +110,55 @@
 
 
 //    first o curance of an element in an array
-public class recursion {
+// public class recursion {
+//     public static void main(String[] args) {
+//         int[] arr = {1, 2, 3, 4, 5,6,7,8,9,10};
+//         System.out.println(firstOccurance(arr, 0, 7));
+//         }
+//         public static int firstOccurance(int[] arr, int i, int key) {
+//             if(i == arr.length){
+//                 return -1;
+//             }
+//             if(arr[i] == key){
+//                 return i;
+//             }
+//              return firstOccurance(arr, i+1, key);
+//         }
+// }
+
+
+
+// last occurance or a number in an array
+// public class recursion {
+//     public static void main(String[] args) {
+//         int arr[] = {1, 2, 3, 4, 5,6,7,8,9,10};
+//         System.out.println(lastOccurance(arr, 0, 7));
+//         }
+//         public static int lastOccurance(int[] arr, int i, int key) {
+//             if(i == arr.length){
+//                 return -1;
+//                 }
+//             int isfound = lastOccurance(arr, i+1, key);
+//             if(isfound == -1  && arr[i] == key){
+//                 return i;
+//             }
+//              return isfound;
+//         }
+// }
+
+
+//power of a number using recursion
+ public class recursion {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5,6,7,8,9,10};
-        System.out.println(firstOccurance(arr, 0, 7));
+        System.out.println(power(2, 3));
         }
-        public static int firstOccurance(int[] arr, int i, int key) {
-            if(i == arr.length){
-                return -1;
-            }
-            if(arr[i] == key){
-                return i;
-            }
-             return firstOccurance(arr, i+1, key);
-        }
-}
+        public static int power(int a, int b) {
+            if(b == 0) {
+                return 1;
+                }
+                return a * power(a, b-1);
+                }
+                }
+
+
+
