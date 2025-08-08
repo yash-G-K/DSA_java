@@ -90,19 +90,38 @@
 
  
 // array is sorted or not using recursion
- public class recursion {
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5};
-        System.out.println(isSorted(arr, 0));
-        }
-        public static boolean isSorted(int[] arr, int i) {
-            if(i == arr.length-1){
-                return true;
-            }
-            if(arr[i] > arr[i+1]){
-                return false;
+//  public class recursion {
+//     public static void main(String[] args) {
+//         int[] arr = {1, 2, 3, 4, 5};
+//         System.out.println(isSorted(arr, 0));
+//         }
+//         public static boolean isSorted(int[] arr, int i) {
+//             if(i == arr.length-1){
+//                 return true;
+//             }
+//             if(arr[i] > arr[i+1]){
+//                 return false;
            
+//         }
+//         return isSorted(arr, i+1);
+//         }
+//  }
+
+
+
+//    first o curance of an element in an array
+public class recursion {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5,6,7,8,9,10};
+        System.out.println(firstOccurance(arr, 0, 7));
         }
-        return isSorted(arr, i+1);
+        public static int firstOccurance(int[] arr, int i, int key) {
+            if(i == arr.length){
+                return -1;
+            }
+            if(arr[i] == key){
+                return i;
+            }
+             return firstOccurance(arr, i+1, key);
         }
- }
+}
