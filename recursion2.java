@@ -17,7 +17,7 @@ public class recursion2{
      return toways;
     }
     public static void main(String[] args) {
-        System.out.println(tilingproblem(4));
+        System.out.println(tilingproblem(7));
         
     }
 
