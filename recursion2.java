@@ -68,19 +68,20 @@ public static int friendspairing(int n){
         return n;
     }
 //    single choices
-     int  fnm1 = friendspairing(n-1);
+    //  int  fnm1 = friendspairing(n-1);
 
-     // pairing
-     int fnm2 = friendspairing(n-2);
-     int pairways = (n-1) * (n-2);
+    //  // pairing
+    //  int fnm2 = friendspairing(n-2);
+    //  int pairways = (n-1) * (n-2);
 
-     //total pairing
-     int totalways = fnm1 + pairways;
-         return totalways;
+    //  //total pairing
+    //  int totalways = fnm1 + pairways;
+    //      return totalways;
 
+       return friendspairing (n-1) + (n-1) * friendspairing(n-2);
 }
     public static void main(String[] args) {
-        int  n=5;
+        int  n=3;
         System.out.println(friendspairing(n));
     }
 }
