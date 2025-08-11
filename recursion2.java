@@ -62,26 +62,51 @@
 //  total number of ways in which friends can remain 
 //  single or can be paired up.
 
+// public class recursion2{
+// public static int friendspairing(int n){
+//     if(n==1 || n==2){
+//         return n;
+//     }
+// //    single choices
+//      int  fnm1 = friendspairing(n-1);
+
+//      // pairing
+//      int fnm2 = friendspairing(n-2);
+//      int pairways = (n-1) * (n-2);
+
+//      //total pairing
+//      int totalways = fnm1 + pairways;
+//          return totalways;
+
+//       // return friendspairing (n-1) + (n-1) * friendspairing(n-2);
+// }
+//     public static void main(String[] args) {
+//         int  n=3;
+//         System.out.println(friendspairing(n));
+//     }
+// }
+
+
+//                     Binary string problem
+// print all binary strings of size N without consecutive ones.
 public class recursion2{
-public static int friendspairing(int n){
-    if(n==1 || n==2){
-        return n;
+    public static void binarystring(int n, int lastplace, StringBuilder str){
+        if(n==0){
+            System.out.println(str);
+            }
+            else{
+                if(lastplace==0){
+                    binarystring(n-1, 0, str.append("0"));
+                    }
+                    else{
+                        binarystring(n-1, 1, str.append("0"));
+                        //                        binarystring(n-1, 0, str.append("1"));
+                        binarystring(n-1, 0, str.append("1"));
+                        }
+                        }
     }
-//    single choices
-    //  int  fnm1 = friendspairing(n-1);
-
-    //  // pairing
-    //  int fnm2 = friendspairing(n-2);
-    //  int pairways = (n-1) * (n-2);
-
-    //  //total pairing
-    //  int totalways = fnm1 + pairways;
-    //      return totalways;
-
-       return friendspairing (n-1) + (n-1) * friendspairing(n-2);
-}
-    public static void main(String[] args) {
-        int  n=3;
-        System.out.println(friendspairing(n));
-    }
-}
+                        public static void main(String[] args) {
+                            int n=7;
+                            binarystring(n, 0, new StringBuilder());
+                            }
+                            }
