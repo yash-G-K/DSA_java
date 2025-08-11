@@ -90,23 +90,18 @@
 //                     Binary string problem
 // print all binary strings of size N without consecutive ones.
 public class recursion2{
-    public static void binarystring(int n, int lastplace, StringBuilder str){
+    public static void binarystring(int n, int lastplace,  String str){
         if(n==0){
             System.out.println(str);
+            return;
             }
-            else{
-                if(lastplace==0){
-                    binarystring(n-1, 0, str.append("0"));
-                    }
-                    else{
-                        binarystring(n-1, 1, str.append("0"));
-                        //                        binarystring(n-1, 0, str.append("1"));
-                        binarystring(n-1, 0, str.append("1"));
-                        }
-                        }
+        binarystring(n-1, 0, str+"0");
+        if(lastplace == 0){
+        binarystring(n-1, 1, str+"1");
     }
-                        public static void main(String[] args) {
-                            int n=7;
-                            binarystring(n, 0, new StringBuilder());
-                            }
-                            }
+    }
+    public static void main(String[] args) {
+    int n=3;
+    binarystring(n, 0, "");
+    }
+}
