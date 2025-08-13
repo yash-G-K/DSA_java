@@ -56,7 +56,7 @@
 //                   quicksort
 public class div_and_con {
     public static void main(String[] args) {
-        int arr[] = {6, 3, 9, 5, 2, 5,8,7};
+        int arr[] = {6, 3, 9, 5, 2, 5};
         quicksort(arr, 0, arr.length - 1); // Corrected argument order
         printarr(arr);
     }
