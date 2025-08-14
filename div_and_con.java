@@ -74,7 +74,7 @@ public class div_and_con {
     }
 
     public static int partition(int arr[], int si, int ei) {
-        int pivot = arr[ei]; // Choosing the last element as the pivot.
+        int pivot = arr[ei]; 
         int i = si - 1; // Initialize 'i' as one less than the starting index.
 
         for (int j = si; j < ei; j++) { // Loop from the start index to the element before the pivot
