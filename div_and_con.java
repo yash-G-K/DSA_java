@@ -131,6 +131,7 @@ public class div_and_con{
         }
     }
 
+<<<<<<< HEAD
         //mid on line 2
         else{
             // case c: right
@@ -139,6 +140,19 @@ public class div_and_con{
             }else{
                 // case d : left
                 return search(arr, tar, si, mid-1);
+=======
+    public static int partition(int arr[], int si, int ei) {
+        int pivot = arr[ei]; 
+        int i = si - 1; // Initialize 'i' as one less than the starting index.
+
+        for (int j = si; j < ei; j++) { // Loop from the start index to the element before the pivot
+            if (arr[j] <= pivot) { // If the current element is less than or equal to the pivot
+                i++; // Increment 'i'
+                // Swap arr[i] and arr[j] to place smaller elements before the pivot
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+>>>>>>> 3a7a1e5ce296f09ed215563b17caff9f11016b16
             }
         }
     }
