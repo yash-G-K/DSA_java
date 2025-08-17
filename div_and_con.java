@@ -1,5 +1,4 @@
-
-//                  Merge sort
+ //              Merge sort
 // public class div_and_con{
 //     public static void printarr(int arr[]) {
 //         for (int i = 0; i < arr.length; i++) {
