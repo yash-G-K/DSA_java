@@ -29,26 +29,48 @@
 
 
 // subseets using backtracking
-public class backtracking{
+// public class backtracking{
 
-    public static void subset(String str, String ans,int i){
+//     public static void subset(String str, String ans,int i){
+//         //base case
+//         if(i== str.length()) {
+//            if (ans.length() == 0) {
+//                 System.out.println("null");
+//            } else {
+//                 System.out.println(ans);
+//       }
+//     return;
+//     }
+//         //recursion
+//         //yes choice
+//         subset(str,ans+str.charAt(i),i+1);
+//         //no choice
+//         subset(str,ans,i+1);
+//     }
+//     public static void main(String[] args) {
+//         String str = "abc";
+//         subset(str,"",0);
+//     }
+// }
+
+
+//       permutations of string using backtracking
+public class backtracking{
+    public static void permute(String str, String ans){
         //base case
-        if(i== str.length()) {
-           if (ans.length() == 0) {
-                System.out.println("null");
-           } else {
-                System.out.println(ans);
-      }
-    return;
-    }
+        if(str.length() == 0){
+            System.out.println(ans);
+            return;
+        }
         //recursion
-        //yes choice
-        subset(str,ans+str.charAt(i),i+1);
-        //no choice
-        subset(str,ans,i+1);
+        for(int i=0;i<str.length();i++){
+            char curr = str.charAt(i);
+            String newstr = str.substring(0,i) + str.substring(i+1);
+            permute(newstr,ans+curr);
+        }
     }
     public static void main(String[] args) {
         String str = "abc";
-        subset(str,"",0);
+        permute(str,"");
     }
 }
