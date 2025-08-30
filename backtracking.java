@@ -103,6 +103,8 @@ public class backtracking{
         //base case
         if(row == board.length){
             printboard(board);
+            count++;
+            System.out.println("solution count: "+count);
             return;
         }
         //recursion
@@ -123,6 +125,7 @@ public class backtracking{
             System.out.println();
         }
     }
+     static int count = 0;
         public static void main(String[] args) {
         int n = 5;
         char board[][] = new char[n][n];
