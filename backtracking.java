@@ -78,6 +78,27 @@
 
 //      n queens problem using backtracking
 public class backtracking{
+    public static boolean issafe(char board[][],int row,int col){
+        //verticl up
+        for(int i=row-1; i>=0; i--){
+            if(board[i][col] == 'Q'){
+            return false;
+        }
+        }
+        //left diagonal
+        for(int i=row-1,j=col-1; i>=0 && j>=0; i--,j--){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+        }
+        //right diagonal
+        for(int i=row-1,j=col+1; i>=0 && j<board.length; i--,j++){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+        }
+        return true;
+    }
     public static void nqueens(char board[][],int row){
         //base case
         if(row == board.length){
@@ -86,10 +107,12 @@ public class backtracking{
         }
         //recursion
         for(int j=0;j<board.length;j++){
-            board [row][j] = 'Q';
-            nqueens(board, row+1);
-            board[row][j] = 'x'; //backtracking step
-        }       
+            if(issafe(board,row,j)){
+                board [row][j] = 'Q';
+                nqueens(board, row+1);
+                board[row][j] = 'x'; //backtracking step
+            }
+        }
     }
     public static void printboard(char board[][]){
         System.out.println("-----chess board-----");
@@ -101,7 +124,7 @@ public class backtracking{
         }
     }
         public static void main(String[] args) {
-        int n = 2;
+        int n = 5;
         char board[][] = new char[n][n];
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
