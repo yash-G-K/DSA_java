@@ -130,7 +130,11 @@ public class arraylist {
         list.add(5);
         System.out.println("Original list: " + list);
 
-       Collections.sort(list);
+       Collections.sort(list);   //ascending order
+       // Collections.sort(list, Collections.reverseOrder()); //descending order
        System.out.println("Sorted list: " + list);
+
+       Collections.sort(list, Collections.reverseOrder()); //descending order
+       System.out.println("Sorted list in descending order: " + list);
     }
 }
