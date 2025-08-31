@@ -15,6 +15,32 @@ import java.util.ArrayList;
         list2.add("World");
 
         System.out.println(list2);
-        System.out.println(list2.size());   
+
+        // get operation
+        System.out.println(list.get(2));   
+
+        // remove operation
+        list.remove(2);
+        System.out.println(list);
+
+        // set operation at index
+        list.set(0, 99);
+        System.out.println(list);
+
+        //contains operation
+        System.out.println(list.contains(99));
+        System.out.println(list.contains(3));
+
+        // size operation
+        System.out.println(list.size());
+
+        list.add(2, 3);
+        System.out.println(list);
+
+        // iteration print arraylist
+        for(int i=0; i<list.size(); i++){
+            System.out.print(list.get(i)+" ");
+        }
+        System.out.println();
     }
  }
