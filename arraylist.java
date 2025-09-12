@@ -141,30 +141,94 @@
 
 
 // multi dimensional arraylist 
+// import java.util.ArrayList;
+// public class arraylist {
+//     public static void main(String[] args) {
+//         ArrayList<ArrayList<Integer>> mainlist = new ArrayList<>();
+//         ArrayList<Integer> list1 = new ArrayList<>();
+//         list1.add(1);
+//         list1.add(2);
+//         list1.add(3);
+//         mainlist.add(list1);
+
+//         ArrayList<Integer> list2 = new ArrayList<>();
+//         list2.add(4);
+//         list2.add(5);
+//         list2.add(6);
+//         mainlist.add(list2);
+
+//         for(int i = 0 ; i<mainlist.size(); i++){
+//             ArrayList<Integer> currlist = mainlist.get(i);
+//             for(int j =0; j<currlist.size(); j++){
+//                 System.out.print(currlist.get(j)+" ");
+//             }
+//             System.out.println();
+//     }
+//     System.out.print("mainlist = " + mainlist);
+//     }
+// }
+
+// import java.util.ArrayList;
+// public class arraylist {
+//     public static void main(String[] args) {
+//         ArrayList<ArrayList<Integer>> mainlist = new ArrayList<>();
+//         ArrayList<Integer> list1 = new ArrayList<>();
+//         ArrayList<Integer> list2 = new ArrayList<>();
+//         ArrayList<Integer> list3 = new ArrayList<>();
+
+//         for(int i = 1; i<=5; i++){
+//             list1.add(i*1);
+//             list2.add(i*2);
+//             list3.add(i*3);
+//         }
+//             mainlist.add(list1);
+//             mainlist.add(list2);
+//             mainlist.add(list3);
+
+//             System.out.println("MainList ="  + mainlist);
+
+//         for(int a = 0; a < mainlist.size(); a++){
+//             ArrayList<Integer> currlist = mainlist.get(a);
+//             for(int b =0; b< currlist.size(); b++){
+//                 System.out.print(currlist.get(b)+" ");
+//             }
+//             System.out.println();
+//         }
+//         System.out.print("mainlist = " + mainlist);
+//     }
+// }
+
+// Container with most 
 import java.util.ArrayList;
 public class arraylist {
-    public static void main(String[] args) {
-        ArrayList<ArrayList<Integer>> mainlist = new ArrayList<>();
-        ArrayList<Integer> list1 = new ArrayList<>();
-        list1.add(1);
-        list1.add(2);
-        list1.add(3);
-        mainlist.add(list1);
-
-        ArrayList<Integer> list2 = new ArrayList<>();
-        list2.add(4);
-        list2.add(5);
-        list2.add(6);
-        mainlist.add(list2);
-
-        for(int i = 0 ; i<mainlist.size(); i++){
-            ArrayList<Integer> currlist = mainlist.get(i);
-            for(int j =0; j<currlist.size(); j++){
-                System.out.print(currlist.get(j)+" ");
-            }
-            System.out.println();
+public static int maxArea(ArrayList<Integer> height) {
+    int maxarea = 0;
+    //brute force approach O(n^2)
+    int n = height.size();
+    for(int i = 0; i < n; i++){
+        for(int j = i+1; j < n; j++){
+            int ht = Math.min(height.get(i), height.get(j));
+            int width = j - i;
+            int area = ht * width;
+            maxarea = Math.max(maxarea, area);
+        }
     }
-    System.out.print("mainlist = " + mainlist);
-    }
+    return maxarea;
 }
 
+public static void main(String args[]) {
+ArrayList<Integer> height = new ArrayList<>(); //1, 8, 6, 2, 5, 4, 8, 3, 7
+height.add(1); 
+height.add(8);
+height.add(6);
+height.add(2);
+height.add(5);
+height.add(4);
+height.add(8);
+height.add(3);
+height.add(7);
+
+System.out.println("The maximum area is: " + maxArea(height));
+
+}
+}
