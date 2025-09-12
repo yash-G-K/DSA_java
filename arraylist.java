@@ -118,23 +118,23 @@
 
 
 //  sorting an arraylist
-import java.util.ArrayList;
-import java.util.Collections;
-public class arraylist {
-    public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(8);
-        list.add(3);
-        list.add(12);
-        list.add(5);
-        System.out.println("Original list: " + list);
+// import java.util.ArrayList;
+// import java.util.Collections;
+// public class arraylist {
+//     public static void main(String[] args) {
+//         ArrayList<Integer> list = new ArrayList<>();
+//         list.add(1);
+//         list.add(8);
+//         list.add(3);
+//         list.add(12);
+//         list.add(5);
+//         System.out.println("Original list: " + list);
 
-       Collections.sort(list);   //ascending order
-       // Collections.sort(list, Collections.reverseOrder()); //descending order
-       System.out.println("Sorted list: " + list);
+//        Collections.sort(list);   //ascending order
+//        // Collections.sort(list, Collections.reverseOrder()); //descending order
+//        System.out.println("Sorted list: " + list);
 
-       Collections.sort(list, Collections.reverseOrder()); //descending order
-       System.out.println("Sorted list in descending order: " + list);
-    }
-}
+//        Collections.sort(list, Collections.reverseOrder()); //descending order
+//        System.out.println("Sorted list in descending order: " + list);
+//     }
+// }
