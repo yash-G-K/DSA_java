@@ -235,39 +235,69 @@
 
 
 // 2 pointer approach optimed approach O(n)
+// import java.util.ArrayList;
+// public class arraylist {
+//         public static int maxArea(ArrayList<Integer> height) {
+//             int maxarea = 0;
+//             int lp=0;
+//             int rp=height.size()-1;
+
+//             while(lp<rp){
+//                 int ht = Math.min(height.get(lp), height.get(rp));
+//                 int width = rp-lp;
+//                 int currwater = ht * width;
+//                 maxarea = Math.max(maxarea, currwater);
+
+//                 if(height.get(lp) < height.get(rp)){
+//                     lp++;
+//                     }else{
+//                         rp--;
+//                     }
+//                 }
+//             return maxarea;
+// }
+//         public static void main(String args[]) {
+//         ArrayList<Integer> height = new ArrayList<>(); //1, 8, 6, 2, 5, 4, 8, 3, 7
+//         height.add(1); 
+//         height.add(8);
+//         height.add(6);
+//         height.add(2);
+//         height.add(5);
+//         height.add(4);
+//         height.add(8);
+//         height.add(3);
+//         height.add(7);
+//         System.out.println("The maximum area is: " + maxArea(height));
+    
+//         }
+// }
+
+
+// pair-1 sum problrm in sorted arraylist
 import java.util.ArrayList;
 public class arraylist {
-        public static int maxArea(ArrayList<Integer> height) {
-            int maxarea = 0;
-            int lp=0;
-            int rp=height.size()-1;
-
-            while(lp<rp){
-                int ht = Math.min(height.get(lp), height.get(rp));
-                int width = rp-lp;
-                int currwater = ht * width;
-                maxarea = Math.max(maxarea, currwater);
-
-                if(height.get(lp) < height.get(rp)){
-                    lp++;
-                    }else{
-                        rp--;
-                    }
+    public static boolean pairSum(ArrayList<Integer> list, int target){
+        //brute force approach O(n^2)
+        int n = list.size();
+        for(int i = 0; i<n; i++){
+              for(int j =i+1; j<n; j++){
+                int Goal = list.get(i) + list.get(j);
+                if(Goal == target){
+                    System.out.println("Pair found at index " + i + " and " + j);
+                    return true;
                 }
-            return maxarea;
-}
-        public static void main(String args[]) {
-        ArrayList<Integer> height = new ArrayList<>(); //1, 8, 6, 2, 5, 4, 8, 3, 7
-        height.add(1); 
-        height.add(8);
-        height.add(6);
-        height.add(2);
-        height.add(5);
-        height.add(4);
-        height.add(8);
-        height.add(3);
-        height.add(7);
-        System.out.println("The maximum area is: " + maxArea(height));
-    
+              }
         }
+        return false;
+    }
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        int target = 9;
+        pairSum(list, target);
+    }    
 }
