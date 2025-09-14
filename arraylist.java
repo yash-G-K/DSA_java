@@ -342,7 +342,7 @@ public class arraylist {
         list.add(4);
         list.add(5);
         int target = 9;
-        pairSum(list, target);
+        pairsum2(list, target);
     }    
 }
 =======
