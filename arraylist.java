@@ -276,22 +276,64 @@
 
 
 // pair-1 sum problrm in sorted arraylist
+// import java.util.ArrayList;
+// public class arraylist {
+//     public static boolean pairSum(ArrayList<Integer> list, int target){
+//         //brute force approach O(n^2)
+//         int n = list.size();
+//         for(int i = 0; i<n; i++){
+//               for(int j =i+1; j<n; j++){
+//                 int Goal = list.get(i) + list.get(j);
+//                 if(Goal == target){
+//                     System.out.println("Pair found at index " + i + " and " + j);
+//                     return true;
+//                 }
+//               }
+//         }
+//         return false;
+//     }
+//     public static void main(String[] args) {
+//         ArrayList<Integer> list = new ArrayList<>();
+//         list.add(1);
+//         list.add(2);
+//         list.add(3);
+//         list.add(4);
+//         list.add(5);
+//         int target = 9;
+//         pairSum(list, target);
+//     }    
+// }
+
+
+//      pair sum -2 problem in sorted arraylist
 import java.util.ArrayList;
 public class arraylist {
-    public static boolean pairSum(ArrayList<Integer> list, int target){
-        //brute force approach O(n^2)
-        int n = list.size();
-        for(int i = 0; i<n; i++){
-              for(int j =i+1; j<n; j++){
-                int Goal = list.get(i) + list.get(j);
-                if(Goal == target){
-                    System.out.println("Pair found at index " + i + " and " + j);
-                    return true;
-                }
-              }
+    public static boolean pairsum2(ArrayList<Integer> list, int target){
+        int bp = -1; //breaking point
+        for(int i=0;i<list.size(); i++){
+            if(list.get(i) > list.get(i+1)){
+                bp = i;
+                break;
+            }
+        } 
+        int lp = bp+1; //smallest element
+        int rp = bp; //largest element
+        while(lp != rp){
+            //case 1
+            if(list.get(lp) + list.get(rp) == target){
+                System.out.println("Pair found at index " + lp + " and " + rp);
+                return true;
+            }
+            //case 2
+            if(list.get(lp) + list.get(rp) < target){
+                lp = (lp + 1) % list.size(); //to make it circular
+            }else{
+                rp = (list.size() + rp - 1) % list.size(); //to make it circular
+            }
         }
         return false;
     }
+<<<<<<< HEAD
     public static void main(String[] args) {
         ArrayList<Integer> list = new ArrayList<>();
         list.add(1);
@@ -303,3 +345,18 @@ public class arraylist {
         pairSum(list, target);
     }    
 }
+=======
+public static void main(String args[]) {
+ArrayList<Integer> list = new ArrayList<>();
+//11, 15, 6, 8, 9, 10
+list.add(11);
+list.add(15);
+list.add(6);
+list.add(8);
+list.add(9);
+list.add(10);
+int target = 16;
+pairsum2(list, target);
+}
+}
+>>>>>>> 2ff7c22 (code changes)
