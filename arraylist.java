@@ -333,19 +333,6 @@ public class arraylist {
         }
         return false;
     }
-<<<<<<< HEAD
-    public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        int target = 9;
-        pairsum2(list, target);
-    }    
-}
-=======
 public static void main(String args[]) {
 ArrayList<Integer> list = new ArrayList<>();
 //11, 15, 6, 8, 9, 10
