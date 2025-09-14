@@ -346,4 +346,3 @@ int target = 16;
 pairsum2(list, target);
 }
 }
->>>>>>> 2ff7c22 (code changes)
