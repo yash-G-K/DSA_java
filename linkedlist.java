@@ -27,7 +27,6 @@ public class linkedlist {
             return;
         }
 
-        // 3. New node next = head
         newNode.next = head;
 
         // 4. Head = new node
@@ -42,6 +41,10 @@ public class linkedlist {
         ll.addFirst(3);
         ll.addFirst(4);
         ll.addFirst(5);
+        ll.addFirst(6);
+        ll.addFirst(7);
+        ll.addFirst(8);
+        ll.addFirst(9);
 
         System.out.println("Head: " + ll.head.data);
         System.out.println("Tail: " + ll.tail.data);
