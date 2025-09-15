@@ -27,24 +27,48 @@ public class linkedlist {
             return;
         }
 
+        // 3. New node next = head
         newNode.next = head;
 
         // 4. Head = new node
         head = newNode;
     }
+    //adding at last
+    public void addlast(int data){
+        // node creation
+        Node newnode = new Node(data);
+        if(head==null){
+            head=newnode;
+            tail=newnode;
+            return;
+        }
+        tail.next = head;
+        tail = newnode;
+
+    }
+
+// public static void main(String args[]) {
+// LinkedList ll = new LinkedList(); //direct creation of object
+// ll.head= new Node(1);
+// ll.head.next = new Node(2);
+
 
     // Main method
     public static void main(String args[]) {
         linkedlist ll = new linkedlist();
-        ll.addFirst(1);
-        ll.addFirst(2);
-        ll.addFirst(3);
-        ll.addFirst(4);
-        ll.addFirst(5);
-        ll.addFirst(6);
-        ll.addFirst(7);
+        // ll.addFirst(1);
+        // ll.addFirst(2);
+        // ll.addFirst(3);
+        // ll.addFirst(4);
+        // ll.addFirst(5);
+        // ll.addFirst(6);
+        // ll.addFirst(7);
         ll.addFirst(8);
         ll.addFirst(9);
+        ll.addlast(1);
+        ll.addlast(2);
+        ll.addlast(3);
+        ll.addlast(4);
 
         System.out.println("Head: " + ll.head.data);
         System.out.println("Tail: " + ll.tail.data);
