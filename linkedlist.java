@@ -42,7 +42,7 @@ public class linkedlist {
             tail=newnode;
             return;
         }
-        tail.next = head;
+        tail.next = newnode;
         tail = newnode;
 
     }
@@ -52,7 +52,19 @@ public class linkedlist {
 // ll.head= new Node(1);
 // ll.head.next = new Node(2);
 
-
+//printing thre linked list
+public void printlist() {
+    if(head == null){
+        System.out.print("List is empty");
+        return;
+    }
+    Node temp = head;
+    while(temp !=null){
+        System.out.print(temp.data + "->");
+        temp = temp.next;
+    }
+    System.out.println("null");
+}
     // Main method
     public static void main(String args[]) {
         linkedlist ll = new linkedlist();
@@ -63,14 +75,22 @@ public class linkedlist {
         // ll.addFirst(5);
         // ll.addFirst(6);
         // ll.addFirst(7);
+        ll.printlist();
         ll.addFirst(8);
+        ll.printlist();
         ll.addFirst(9);
         ll.addlast(1);
         ll.addlast(2);
+        ll.printlist();
         ll.addlast(3);
         ll.addlast(4);
+        ll.printlist();
 
         System.out.println("Head: " + ll.head.data);
         System.out.println("Tail: " + ll.tail.data);
+
+
     }
 }
+
+
