@@ -151,6 +151,24 @@ public class linkedlist {
         //key not found
         return -1;
     }
+    // recursive searchj
+    private int helper(Node head, int key){
+        if(head == null){
+            return -1;
+        }
+        if(head.data == key){
+            return 0;
+        }
+        int idx = helper(head.next,key);
+        if(idx == -1){
+            return -1;
+        }
+        return idx +1;
+    }
+
+    public int recsearch(int key){
+        return helper(this.head,key);
+    }
 
     // Main method
     public static void main(String args[]) {
@@ -181,8 +199,12 @@ public class linkedlist {
 
         System.out.println("Size of list: " + ll.size());
 
-        System.out.println("Index of element 5: " + ll.search(5));
-        System.out.println("Index of element 10: " + ll.search(10));
+        // System.out.println("Index of element 5: " + ll.search(5));
+        // System.out.println("Index of element 10: " + ll.search(10));
+
+        System.out.println("Index of element 5 (recursive): " + ll.recsearch(5));
+        System.out.println("Index of element 10 (recursive): " + ll.recsearch(10));
+
     }
 }
 
