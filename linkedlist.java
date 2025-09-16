@@ -170,6 +170,19 @@ public class linkedlist {
         return helper(this.head,key);
     }
 
+    // reverse  a linked list
+    public void reverse(){
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+        while(curr != null){
+            next =curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
     // Main method
     public static void main(String args[]) {
         linkedlist ll = new linkedlist();
@@ -202,9 +215,12 @@ public class linkedlist {
         // System.out.println("Index of element 5: " + ll.search(5));
         // System.out.println("Index of element 10: " + ll.search(10));
 
-        System.out.println("Index of element 5 (recursive): " + ll.recsearch(5));
-        System.out.println("Index of element 10 (recursive): " + ll.recsearch(10));
+        // System.out.println("Index of element 5 (recursive): " + ll.recsearch(5));
+        // System.out.println("Index of element 10 (recursive): " + ll.recsearch(10));
 
+        ll.reverse();   
+        System.out.println("After reversing the list:");
+        ll.printList();
     }
 }
 
