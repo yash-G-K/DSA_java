@@ -183,34 +183,101 @@ public class linkedlist {
         }
         head = prev;
     }
+
+    // remove nth node from the linked list
+    public void deleteNthFromEnd(int n){
+        // calculate size
+        int  sz= 0;
+        Node temp = head;
+        while(temp!=null){
+            temp =temp.next;
+            sz++;
+        }
+        if(n == sz){
+            head = head.next;//remove first
+            return;
+        }
+        int i = 1;
+        int iToFind = sz - n;
+        Node prev = head;
+        while(i < iToFind){
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next;
+        return;
+    }
+
+//slow fast approach to find middle
+    public Node findMid(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;//+1
+            fast = fast.next.next;//+2
+        }
+        return slow;//slow is mid node
+    }
+
+    public boolean checkPalindrome(){
+        if(head == null || head.next == null){
+            return true;
+        }
+        //step1 - find mid
+        Node midNode = findMid(head);
+
+        //step2 - reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev;//right half head
+        Node left = head;
+
+        //step3 - check left half and right half
+        while(right != null){
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
     // Main method
     public static void main(String args[]) {
         linkedlist ll = new linkedlist();
 
         ll.addFirst(1);
         ll.addFirst(2);
-        ll.addFirst(3);
-        ll.addFirst(4);
+        ll.addFirst(2);
+        ll.addFirst(1);
 
         System.out.println("Initial List:");
         ll.printList();
 
-        ll.addMiddle(2, 5);
-        System.out.println("After inserting 5 at index 2:");
-        ll.printList();
+        // ll.addMiddle(2, 5);
+        // System.out.println("After inserting 5 at index 2:");
+        // ll.printList();
 
-        System.out.println("Head: " + ll.head.data);
-        System.out.println("Tail: " + ll.tail.data);
+        // System.out.println("Head: " + ll.head.data);
+        // System.out.println("Tail: " + ll.tail.data);
 
-        ll.removeFirst();
-        System.out.println("After removing first:");
-        ll.printList();
+        // ll.removeFirst();
+        // System.out.println("After removing first:");
+        // ll.printList();
 
-        ll.removeLast();
-        System.out.println("After removing last:");
-        ll.printList();
+        // ll.removeLast();
+        // System.out.println("After removing last:");
+        // ll.printList();
 
-        System.out.println("Size of list: " + ll.size());
+        // System.out.println("Size of list: " + ll.size());
 
         // System.out.println("Index of element 5: " + ll.search(5));
         // System.out.println("Index of element 10: " + ll.search(10));
@@ -218,9 +285,16 @@ public class linkedlist {
         // System.out.println("Index of element 5 (recursive): " + ll.recsearch(5));
         // System.out.println("Index of element 10 (recursive): " + ll.recsearch(10));
 
-        ll.reverse();   
-        System.out.println("After reversing the list:");
-        ll.printList();
+        // ll.reverse();   
+        // System.out.println("After reversing the list:");
+        // ll.printList();
+
+        // ll.deleteNthFromEnd(2);
+        // System.out.println("After deleting 2nd node from end:");
+        // ll.printList();
+
+        System.out.println("Is the list a palindrome? " + ll.checkPalindrome());
+
     }
 }
 
