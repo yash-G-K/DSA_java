@@ -1,3 +1,4 @@
+// Java program to detect and remove cycle in a linked list
 public class linkedlist2 {
     // Node class
     static class Node {
@@ -31,6 +32,38 @@ public class linkedlist2 {
         return false; // No cycle
     }
 
+    // Removing cycle from linked list
+    public static void removeCycle(Node head) {
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+
+        // Detect cycle
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                cycle = true;
+                break;
+            }
+        }
+
+        if (!cycle) return; // No cycle found
+
+        // Move slow to head and find meeting point
+        slow = head;
+        Node prev = null;
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // Break the cycle
+        prev.next = null;
+    }
+
     // Main method
     public static void main(String[] args) {
         Node head = new Node(1);
@@ -38,14 +71,24 @@ public class linkedlist2 {
         head.next.next = new Node(3);
         head.next.next.next = new Node(4);
 
-        // Uncomment below line to create a cycle (4 -> 2)
+        // Create a cycle (4 -> 2)
         head.next.next.next.next = head.next;
 
+        // Detect cycle before removal
         if (hasCycle(head)) {
             System.out.println("Cycle detected in the linked list.");
         } else {
             System.out.println("No cycle in the linked list.");
         }
 
+        // Remove cycle
+        removeCycle(head);
+
+        // Detect cycle after removal
+        if (hasCycle(head)) {
+            System.out.println("Cycle still exists.");
+        } else {
+            System.out.println("Cycle removed successfully.");
+        }
     }
 }
