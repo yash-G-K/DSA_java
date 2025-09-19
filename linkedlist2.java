@@ -226,86 +226,161 @@
 
 
 // zig zaag linked list
-public class linkedlist2 {
-    // Node class
-    static class Node {
-        int data;
-        Node next;
+// public class linkedlist2 {
+//     // Node class
+//     static class Node {
+//         int data;
+//         Node next;
 
-        Node(int data) {
+//         Node(int data) {
+//             this.data = data;
+//             this.next = null;
+//         }
+//     }
+
+//     Node head;  // head of the list
+
+//     // Zigzag function
+//     public void zigzag() {
+//         if (head == null || head.next == null) return;
+
+//         // find mid
+//         Node slow = head;
+//         Node fast = head.next;
+//         while (fast != null && fast.next != null) {
+//             slow = slow.next;
+//             fast = fast.next.next;
+//         }
+//         Node mid = slow;
+
+//         // reverse 2nd half
+//         Node curr = mid.next;
+//         mid.next = null;
+//         Node prev = null;
+//         Node next;
+//         while (curr != null) {
+//             next = curr.next;
+//             curr.next = prev;
+//             prev = curr;
+//             curr = next;
+//         }
+
+//         // merge 1st and 2nd half
+//         Node left = head;
+//         Node right = prev;
+//         Node nextL, nextR;
+//         while (left != null && right != null) {
+//             nextL = left.next;
+//             left.next = right;
+//             nextR = right.next;
+//             right.next = nextL;
+
+//             left = nextL;
+//             right = nextR;
+//         }
+//     }
+
+//     // Print function
+//     public void printList() {
+//         Node temp = head;
+//         while (temp != null) {
+//             System.out.print(temp.data + " ");
+//             temp = temp.next;
+//         }
+//         System.out.println();
+//     }
+
+//     public static void main(String args[]) {
+//         linkedlist2 ll = new linkedlist2();
+//         ll.head = new Node(1);
+//         ll.head.next = new Node(2);
+//         ll.head.next.next = new Node(3);
+//         ll.head.next.next.next = new Node(4);
+//         ll.head.next.next.next.next = new Node(5);
+//         ll.head.next.next.next.next.next = new Node(6);
+//         ll.head.next.next.next.next.next.next = new Node(7);
+
+//         System.out.println("Original List:");
+//         ll.printList();
+
+//         ll.zigzag();
+
+//         System.out.println("Zig-Zag List:");
+//         ll.printList();
+//     }
+// }
+
+
+// double linked list
+public class linkedlist2 {
+    public class node {
+        int data;
+        node next;
+        node prev;
+
+        public node(int data) {
             this.data = data;
             this.next = null;
+            this.prev = null;
         }
     }
 
-    Node head;  // head of the list
+    public static node head;
+    public static node tail;
+    public static int size;
 
-    // Zigzag function
-    public void zigzag() {
-        if (head == null || head.next == null) return;
-
-        // find mid
-        Node slow = head;
-        Node fast = head.next;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+    // add first
+    public void addfirst(int data) {
+        node newnode = new node(data);
+        size++;
+        if (head == null) {
+            head = tail = newnode;
+            return;
         }
-        Node mid = slow;
-
-        // reverse 2nd half
-        Node curr = mid.next;
-        mid.next = null;
-        Node prev = null;
-        Node next;
-        while (curr != null) {
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-
-        // merge 1st and 2nd half
-        Node left = head;
-        Node right = prev;
-        Node nextL, nextR;
-        while (left != null && right != null) {
-            nextL = left.next;
-            left.next = right;
-            nextR = right.next;
-            right.next = nextL;
-
-            left = nextL;
-            right = nextR;
-        }
+        newnode.next = head;   // ✅ link newnode to current head
+        head.prev = newnode;   // ✅ link old head back to newnode
+        head = newnode;        // ✅ update head
     }
 
-    // Print function
-    public void printList() {
-        Node temp = head;
+    // print
+    public void print() {
+        node temp = head;
         while (temp != null) {
-            System.out.print(temp.data + " ");
+            System.out.print(temp.data + "<->");
             temp = temp.next;
         }
-        System.out.println();
+        System.out.println("null");
     }
 
-    public static void main(String args[]) {
+    //remove last element
+    public int removefirst(){
+        if(head==null){
+            System.out.println("DLL is empty");
+            return Integer.MIN_VALUE;
+        }
+        if(size==1){
+            int val = head.data;
+            head=tail=null;
+            size--;
+            return val;
+        }
+        int val = head.data;
+        head = head.next;
+        head.prev = null;
+        size--;
+        return val;
+    }
+
+    public static void main(String[] args) {
         linkedlist2 ll = new linkedlist2();
-        ll.head = new Node(1);
-        ll.head.next = new Node(2);
-        ll.head.next.next = new Node(3);
-        ll.head.next.next.next = new Node(4);
-        ll.head.next.next.next.next = new Node(5);
-        ll.head.next.next.next.next.next = new Node(6);
-        ll.head.next.next.next.next.next.next = new Node(7);
-
-        System.out.println("Original List:");
-        ll.printList();
-
-        ll.zigzag();
-
-        System.out.println("Zig-Zag List:");
-        ll.printList();
+        ll.addfirst(1);
+        ll.addfirst(2);
+        ll.addfirst(3);
+        ll.addfirst(4);
+        ll.print(); // expected: 4<->3<->2<->1<->null
+        System.out.println("Size = " + size);
+        ll.removefirst();
+        ll.print(); // expected: 3<->2<->1<->null
+        System.out.println("Size = " + size);
     }
 }
