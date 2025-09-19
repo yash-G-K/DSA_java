@@ -313,7 +313,7 @@
 
 // double linked list
 public class linkedlist2 {
-    public class node {
+    public static class node {
         int data;
         node next;
         node prev;
@@ -371,16 +371,34 @@ public class linkedlist2 {
         return val;
     }
 
+    public void reverse(){
+        node curr =head ;
+        node prev = null;
+        node next;
+
+        while(curr != null){
+            next =curr.next;
+            curr.next = prev;
+            curr.prev = next;
+            prev =curr;
+            curr =next;
+        }
+    }
     public static void main(String[] args) {
         linkedlist2 ll = new linkedlist2();
         ll.addfirst(1);
         ll.addfirst(2);
         ll.addfirst(3);
         ll.addfirst(4);
-        ll.print(); // expected: 4<->3<->2<->1<->null
-        System.out.println("Size = " + size);
-        ll.removefirst();
-        ll.print(); // expected: 3<->2<->1<->null
-        System.out.println("Size = " + size);
+        // ll.print(); // expected: 4<->3<->2<->1<->null
+        // System.out.println("Size = " + size);
+        // ll.removefirst();
+        // ll.print(); // expected: 3<->2<->1<->null
+        // System.out.println("Size = " + size);
+
+        ll.print();        // expected: 4<->3<->2<->1<->null
+        ll.reverse(); // expected: 1<->2<->3<->4<->null
+        System.out.println("Size = " + ll.size);
+
     }
 }
