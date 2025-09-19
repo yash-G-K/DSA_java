@@ -112,6 +112,120 @@
 // }
 
 //               merge sort in linked list
+// public class linkedlist2 {
+//     // Node class
+//     static class Node {
+//         int data;
+//         Node next;
+
+//         Node(int data) {
+//             this.data = data;
+//             this.next = null;
+//         }
+//     }
+
+//     Node head;
+
+//     // Function to print the linked list
+//     public void printList(Node head) {
+//         Node temp = head;
+//         while (temp != null) {
+//             System.out.print(temp.data + " ");
+//             temp = temp.next;
+//         }
+//         System.out.println();
+//     }
+
+//     // Function to find the middle of the linked list
+//     private Node getMid(Node head) {
+//         if (head == null || head.next == null) {
+//             return head;
+//         }
+
+//         Node slow = head;
+//         Node fast = head.next;
+
+//         while (fast != null && fast.next != null) {
+//             slow = slow.next;
+//             fast = fast.next.next;
+//         }
+//         return slow; // Middle node
+//     }
+
+//     // Function to merge two sorted linked lists
+//     private Node merge(Node head1, Node head2) {
+//         Node mergedLL = new Node(-1);
+//         Node temp = mergedLL;
+
+//         while (head1 != null && head2 != null) {
+//             if (head1.data <= head2.data) {
+//                 temp.next = head1;
+//                 head1 = head1.next;
+//             } else {
+//                 temp.next = head2;
+//                 head2 = head2.next;
+//             }
+//             temp = temp.next;
+//         }
+
+//         while (head1 != null) {
+//             temp.next = head1;
+//             head1 = head1.next;
+//             temp = temp.next;
+//         }
+
+//         while (head2 != null) {
+//             temp.next = head2;
+//             head2 = head2.next;
+//             temp = temp.next;
+//         }
+
+//         return mergedLL.next;
+//     }
+
+//     // Merge sort for linked list
+//     public Node mergeSort(Node head) {
+//         if (head == null || head.next == null) {
+//             return head;
+//         }
+
+//         // Find mid
+//         Node mid = getMid(head);
+
+//         // Split into left and right
+//         Node rightHead = mid.next;
+//         mid.next = null;
+
+//         Node newLeft = mergeSort(head);
+//         Node newRight = mergeSort(rightHead);
+
+//         // Merge sorted halves
+//         return merge(newLeft, newRight);
+//     }
+
+//     // Main method
+//     public static void main(String[] args) {
+//         linkedlist2 list = new linkedlist2();
+
+//         // Creating unsorted linked list: 4 -> 2 -> 1 -> 3
+//         list.head = new Node(4);
+//         list.head.next = new Node(2);
+//         list.head.next.next = new Node(1);
+//         list.head.next.next.next = new Node(3);
+
+//         System.out.println("Original List:");
+//         list.printList(list.head);
+
+//         // Sorting
+//         list.head = list.mergeSort(list.head);
+
+//         System.out.println("Sorted List:");
+//         list.printList(list.head);
+//     }
+// }
+
+
+// zig zaag linked list
 public class linkedlist2 {
     // Node class
     static class Node {
@@ -124,10 +238,50 @@ public class linkedlist2 {
         }
     }
 
-    Node head;
+    Node head;  // head of the list
 
-    // Function to print the linked list
-    public void printList(Node head) {
+    // Zigzag function
+    public void zigzag() {
+        if (head == null || head.next == null) return;
+
+        // find mid
+        Node slow = head;
+        Node fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node mid = slow;
+
+        // reverse 2nd half
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        // merge 1st and 2nd half
+        Node left = head;
+        Node right = prev;
+        Node nextL, nextR;
+        while (left != null && right != null) {
+            nextL = left.next;
+            left.next = right;
+            nextR = right.next;
+            right.next = nextL;
+
+            left = nextL;
+            right = nextR;
+        }
+    }
+
+    // Print function
+    public void printList() {
         Node temp = head;
         while (temp != null) {
             System.out.print(temp.data + " ");
@@ -136,91 +290,22 @@ public class linkedlist2 {
         System.out.println();
     }
 
-    // Function to find the middle of the linked list
-    private Node getMid(Node head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-
-        Node slow = head;
-        Node fast = head.next;
-
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        return slow; // Middle node
-    }
-
-    // Function to merge two sorted linked lists
-    private Node merge(Node head1, Node head2) {
-        Node mergedLL = new Node(-1);
-        Node temp = mergedLL;
-
-        while (head1 != null && head2 != null) {
-            if (head1.data <= head2.data) {
-                temp.next = head1;
-                head1 = head1.next;
-            } else {
-                temp.next = head2;
-                head2 = head2.next;
-            }
-            temp = temp.next;
-        }
-
-        while (head1 != null) {
-            temp.next = head1;
-            head1 = head1.next;
-            temp = temp.next;
-        }
-
-        while (head2 != null) {
-            temp.next = head2;
-            head2 = head2.next;
-            temp = temp.next;
-        }
-
-        return mergedLL.next;
-    }
-
-    // Merge sort for linked list
-    public Node mergeSort(Node head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-
-        // Find mid
-        Node mid = getMid(head);
-
-        // Split into left and right
-        Node rightHead = mid.next;
-        mid.next = null;
-
-        Node newLeft = mergeSort(head);
-        Node newRight = mergeSort(rightHead);
-
-        // Merge sorted halves
-        return merge(newLeft, newRight);
-    }
-
-    // Main method
-    public static void main(String[] args) {
-        linkedlist2 list = new linkedlist2();
-
-        // Creating unsorted linked list: 4 -> 2 -> 1 -> 3
-        list.head = new Node(4);
-        list.head.next = new Node(2);
-        list.head.next.next = new Node(1);
-        list.head.next.next.next = new Node(3);
+    public static void main(String args[]) {
+        linkedlist2 ll = new linkedlist2();
+        ll.head = new Node(1);
+        ll.head.next = new Node(2);
+        ll.head.next.next = new Node(3);
+        ll.head.next.next.next = new Node(4);
+        ll.head.next.next.next.next = new Node(5);
+        ll.head.next.next.next.next.next = new Node(6);
+        ll.head.next.next.next.next.next.next = new Node(7);
 
         System.out.println("Original List:");
-        list.printList(list.head);
+        ll.printList();
 
-        // Sorting
-        list.head = list.mergeSort(list.head);
+        ll.zigzag();
 
-        System.out.println("Sorted List:");
-        list.printList(list.head);
+        System.out.println("Zig-Zag List:");
+        ll.printList();
     }
 }
-
