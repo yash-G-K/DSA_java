@@ -145,33 +145,84 @@
        
 
 // reverse  a string using stack
+// import java.util.*;
+
+// public class stack1 {
+//     // Method to reverse a string using Stack
+//     public static void reverseString(String str) {
+//         Stack<Character> s = new Stack<>();
+//         int idx = 0;
+
+//         // Push all characters into stack
+//         while (idx < str.length()) {
+//             s.push(str.charAt(idx));
+//             idx++;
+//         }
+
+//         // Pop characters to build reversed string
+//         StringBuilder result = new StringBuilder("");
+//         while (!s.isEmpty()) {
+//             char curr = s.pop();
+//             result.append(curr);
+//         }
+
+//         System.out.println(result.toString());
+//     }
+
+//     // Main method
+//     public static void main(String args[]) {
+//         String str = "yash";
+//         reverseString(str);
+//     }
+// }
+
+
+//     reverse a  stack
 import java.util.*;
 
 public class stack1 {
-    // Method to reverse a string using Stack
-    public static void reverseString(String str) {
-        Stack<Character> s = new Stack<>();
-        int idx = 0;
 
-        // Push all characters into stack
-        while (idx < str.length()) {
-            s.push(str.charAt(idx));
-            idx++;
+    // push an element at the bottom of the stack
+    public static void pushAtBottom(Stack<Integer> s, int data) {
+        if (s.isEmpty()) {
+            s.push(data);
+            return;
         }
-
-        // Pop characters to build reversed string
-        StringBuilder result = new StringBuilder("");
-        while (!s.isEmpty()) {
-            char curr = s.pop();
-            result.append(curr);
-        }
-
-        System.out.println(result.toString());
+        int top = s.pop();
+        pushAtBottom(s, data);
+        s.push(top);
     }
 
-    // Main method
+    // reverse stack using recursion
+    public static void reverseStack(Stack<Integer> s) {
+        if (s.isEmpty()) {
+            return;
+        }
+        int top = s.pop();
+        reverseStack(s);
+        pushAtBottom(s, top);
+    }
+
+    // print stack
+    public static void printStack(Stack<Integer> s) {
+        while (!s.isEmpty()) {
+            System.out.println(s.pop());
+        }
+    }
+
     public static void main(String args[]) {
-        String str = "yash";
-        reverseString(str);
+        Stack<Integer> s = new Stack<>();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        s.push(4);
+
+        System.out.println("Original Stack (top to bottom):");
+        printStack((Stack<Integer>) s.clone()); // print copy so original is safe
+
+        reverseStack(s);
+
+        System.out.println("\nReversed Stack (top to bottom):");
+        printStack(s);
     }
 }
