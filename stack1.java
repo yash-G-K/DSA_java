@@ -116,30 +116,62 @@
 
 
 //  push element at bottom of stack
+// import java.util.*;
+// public class stack1 {
+//     public static void pushAtBottom(Stack<Integer> s, int data) {
+//         if (s.isEmpty()) {
+//             s.push(data);
+//             return;
+//         }
+//         int top = s.pop();
+//         pushAtBottom(s, data);
+//         s.push(top);
+//     }
+
+//     public static void main(String args[]) {
+//         Stack<Integer> s = new Stack<>();
+//         s.push(1);
+//         s.push(2);
+//         s.push(3);
+//         System.out.println(s);
+//         pushAtBottom(s, 4);
+//         while(s.isEmpty() == false){
+//             System.out.println(s.peek());
+//             s.pop();
+//         }
+//         System.out.println(s);
+//     }
+// }
+       
+
+// reverse  a string using stack
 import java.util.*;
+
 public class stack1 {
-    public static void pushAtBottom(Stack<Integer> s, int data) {
-        if (s.isEmpty()) {
-            s.push(data);
-            return;
+    // Method to reverse a string using Stack
+    public static void reverseString(String str) {
+        Stack<Character> s = new Stack<>();
+        int idx = 0;
+
+        // Push all characters into stack
+        while (idx < str.length()) {
+            s.push(str.charAt(idx));
+            idx++;
         }
-        int top = s.pop();
-        pushAtBottom(s, data);
-        s.push(top);
+
+        // Pop characters to build reversed string
+        StringBuilder result = new StringBuilder("");
+        while (!s.isEmpty()) {
+            char curr = s.pop();
+            result.append(curr);
+        }
+
+        System.out.println(result.toString());
     }
 
+    // Main method
     public static void main(String args[]) {
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        System.out.println(s);
-        pushAtBottom(s, 4);
-        while(s.isEmpty() == false){
-            System.out.println(s.peek());
-            s.pop();
-        }
-        System.out.println(s);
+        String str = "yash";
+        reverseString(str);
     }
 }
-       
