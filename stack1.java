@@ -178,51 +178,89 @@
 
 
 //     reverse a  stack
+// import java.util.*;
+
+// public class stack1 {
+
+//     // push an element at the bottom of the stack
+//     public static void pushAtBottom(Stack<Integer> s, int data) {
+//         if (s.isEmpty()) {
+//             s.push(data);
+//             return;
+//         }
+//         int top = s.pop();
+//         pushAtBottom(s, data);
+//         s.push(top);
+//     }
+
+//     // reverse stack using recursion
+//     public static void reverseStack(Stack<Integer> s) {
+//         if (s.isEmpty()) {
+//             return;
+//         }
+//         int top = s.pop();
+//         reverseStack(s);
+//         pushAtBottom(s, top);
+//     }
+
+//     // print stack
+//     public static void printStack(Stack<Integer> s) {
+//         while (!s.isEmpty()) {
+//             System.out.println(s.pop());
+//         }
+//     }
+
+//     public static void main(String args[]) {
+//         Stack<Integer> s = new Stack<>();
+//         s.push(1);
+//         s.push(2);
+//         s.push(3);
+//         s.push(4);
+
+//         System.out.println("Original Stack (top to bottom):");
+//         printStack((Stack<Integer>) s.clone()); // print copy so original is safe
+
+//         reverseStack(s);
+
+//         System.out.println("\nReversed Stack (top to bottom):");
+//         printStack(s);
+//     }
+// }
+
+
+//stock span problem
 import java.util.*;
+public class stack1{
+    public static void stockspan(int stocks[],int span[]){
+         Stack<Integer> s =new Stack<>();
+         span[0] = 1;
+         s.push(0);
 
-public class stack1 {
+         for(int i =0; i<stocks.length;i++){
+            int currprice = stocks[i];
+            while(!s.isEmpty() && currprice > stocks[s.peek()]){
+                s.pop();
 
-    // push an element at the bottom of the stack
-    public static void pushAtBottom(Stack<Integer> s, int data) {
-        if (s.isEmpty()) {
-            s.push(data);
-            return;
-        }
-        int top = s.pop();
-        pushAtBottom(s, data);
-        s.push(top);
+            }
+            if(s.isEmpty()){
+                span[i] = i+1;
+
+            }else{
+                int prevhigh = s.peek();
+                span[i] = i -prevhigh;
+            }
+            s.push(i);
+         }
+
     }
+    public static void main(String[] args) {
+        int stocks[] ={100,80,60,70,60,85,100};
+        int span[] = new int[stocks.length];
+        stockspan(stocks ,span);
 
-    // reverse stack using recursion
-    public static void reverseStack(Stack<Integer> s) {
-        if (s.isEmpty()) {
-            return;
+        for(int i = 0; i< span.length ; i++){
+            System.out.println(span[i]+ "");
         }
-        int top = s.pop();
-        reverseStack(s);
-        pushAtBottom(s, top);
-    }
-
-    // print stack
-    public static void printStack(Stack<Integer> s) {
-        while (!s.isEmpty()) {
-            System.out.println(s.pop());
-        }
-    }
-
-    public static void main(String args[]) {
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-        s.push(4);
-
-        System.out.println("Original Stack (top to bottom):");
-        printStack((Stack<Integer>) s.clone()); // print copy so original is safe
-
-        reverseStack(s);
-
-        System.out.println("\nReversed Stack (top to bottom):");
-        printStack(s);
     }
 }
+
