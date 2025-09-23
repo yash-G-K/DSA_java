@@ -229,38 +229,71 @@
 
 
 //stock span problem
+// import java.util.*;
+// public class stack1{
+//     public static void stockspan(int stocks[],int span[]){
+//          Stack<Integer> s =new Stack<>();
+//          span[0] = 1;
+//          s.push(1);
+
+//          for(int i =0; i<stocks.length;i++){
+//             int currprice = stocks[i];
+//             while(!s.isEmpty() && currprice > stocks[s.peek()]){
+//                 s.pop();
+//             }
+//             if(s.isEmpty()){
+//                 span[i] = i+1;
+
+//             }else{
+//                 int prevhigh = s.peek();
+//                 span[i] = i - prevhigh;
+//             }
+//             s.push(i);
+//          }
+
+//     }
+//     public static void main(String[] args) {
+//         int stocks[] ={100,80,60,70,60,85,100};
+//         int span[] = new int[stocks.length];
+//         stockspan(stocks ,span);
+
+//         for(int i = 0; i< span.length ; i++){
+//             System.out.println(span[i]+ "");
+//         }
+//     }
+// }
+
+
+
+//       next greater element
 import java.util.*;
 public class stack1{
-    public static void stockspan(int stocks[],int span[]){
-         Stack<Integer> s =new Stack<>();
-         span[0] = 1;
-         s.push(0);
-
-         for(int i =0; i<stocks.length;i++){
-            int currprice = stocks[i];
-            while(!s.isEmpty() && currprice > stocks[s.peek()]){
-                s.pop();
-
+    
+ public static void main(String[] args) {
+        int arr[] ={6,8,0,1,3};
+        Stack<Integer> s = new Stack<>();
+        int nxtgtr[]  = new int[arr.length];
+        
+        for(int i = arr.length-1 ; i>= 0 ;i--){
+            //while
+            while(!s.isEmpty() && arr[s.peek()] <= arr[i]){
+                  s.pop();
             }
+            //if else
             if(s.isEmpty()){
-                span[i] = i+1;
-
+                nxtgtr[i] =  -1;
             }else{
-                int prevhigh = s.peek();
-                span[i] = i -prevhigh;
+                nxtgtr[i] = arr[s.peek()];
             }
+            //psuh in  s 
+            
             s.push(i);
-         }
-
-    }
-    public static void main(String[] args) {
-        int stocks[] ={100,80,60,70,60,85,100};
-        int span[] = new int[stocks.length];
-        stockspan(stocks ,span);
-
-        for(int i = 0; i< span.length ; i++){
-            System.out.println(span[i]+ "");
         }
-    }
-}
+
+        for(int i = 0; i<nxtgtr.length;i++){
+            System.out.print(nxtgtr[i] +" ");
+        }
+        System.out.println();
+  }
+ }
 
