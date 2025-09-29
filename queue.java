@@ -455,20 +455,78 @@
     
 
 // deque using array
+// import java.util.*;
+// public class queue{
+//     public static void main(String args[]){
+//         Deque<Integer> dq = new LinkedList<>();
+//         dq.addFirst(1);
+//         dq.addFirst(2);
+//         dq.addLast(4);
+//         dq.addLast(3);
+//         System.out.println(dq);
+//         dq.removeFirst();
+//         dq.removeLast();
+//         System.out.println(dq);
+
+//         System.out.println("first element :"+dq.getFirst());
+//         System.out.println("last element :"+dq.getLast());
+//     }
+// }
+
+
+//stack and queue using deque
 import java.util.*;
 public class queue{
-    public static void main(String args[]){
+    public class Stack{
         Deque<Integer> dq = new LinkedList<>();
-        dq.addFirst(1);
-        dq.addFirst(2);
-        dq.addLast(4);
-        dq.addLast(3);
-        System.out.println(dq);
-        dq.removeFirst();
-        dq.removeLast();
-        System.out.println(dq);
-
-        System.out.println("first element :"+dq.getFirst());
-        System.out.println("last element :"+dq.getLast());
+        public void push(int data){
+            dq.addLast(data);
+        }
+        public int pop(){
+            return dq.removeLast();
+        }
+        public int peek(){
+            return dq.getLast();
+        }
+        public boolean isEmpty(){
+            return dq.isEmpty();
+        }
+    }
+    public class Queue{
+        Deque<Integer> dq = new LinkedList<>();
+        public void add(int data){
+            dq.addLast(data);
+        }
+        public int remove(){
+            return dq.removeFirst();
+        }
+        public int peek(){
+            return dq.getFirst();
+        }
+        public boolean isEmpty(){
+            return dq.isEmpty();
+        }
+    }
+    public static void main(String args[]){
+        System.out.println("stack using deque");
+        Stack s = new queue().new Stack();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        System.out.println(s.peek());
+        while(!s.isEmpty()){
+            System.out.println(s.peek());
+            s.pop();
+        }
+        System.out.println("queue using deque");
+        Queue q = new queue().new Queue();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        System.out.println(q.peek());
+        while(!q.isEmpty()){
+            System.out.println(q.peek());
+            q.remove();
+        }
     }
 }
