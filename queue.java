@@ -420,44 +420,55 @@
 // }
 
 
-// queue reversal
-import java.util.*;
-public class queue{
-    public static void reverse(Queue<Integer> q){
-        Stack<Integer> s = new Stack<>();
-        while(!q.isEmpty()){
-            s.push(q.remove());
-        }
-        while(!s.isEmpty()){
-            q.add(s.pop());
-        }
-    }
-    public static void main(String args[]){
-        Queue<Integer> q = new LinkedList<>();
-        q.add(1);
-        q.add(2);
-        q.add(3);
-        q.add(4);
-        q.add(5);
-        q.add(6);
-        q.add(7);
-        q.add(8);
-        q.add(9);
-        q.add(10);
+//queue reversal
+// import java.util.*;
+// public class queue{
+//     public static void reverse(Queue<Integer> q){
+//         Stack<Integer> s = new Stack<>();
+//         while(!q.isEmpty()){
+//             s.push(q.remove());
+//         }
+//         while(!s.isEmpty()){
+//             q.add(s.pop());
+//         }
+//     }
+//     public static void main(String args[]){
+//         Queue<Integer> q = new LinkedList<>();
+//         q.add(1);
+//         q.add(2);
+//         q.add(3);
+//         q.add(4);
+//         q.add(5);
+//         q.add(6);
+//         q.add(7);
+//         q.add(8);
+//         q.add(9);
+//         q.add(10);
 
-        reverse(q);
-        // print queue
-        while(!q.isEmpty()){
-            System.out.print(q.remove() + " ");
-        }
-    }
-}
+//         reverse(q);
+//         // print queue
+//         while(!q.isEmpty()){
+//             System.out.print(q.remove() + " ");
+//         }
+//     }
+// }
     
 
 // deque using array
-// import java.util.*;
-// public class queue{
-//     public static void main(String args[]){
+import java.util.*;
+public class queue{
+    public static void main(String args[]){
+        Deque<Integer> dq = new LinkedList<>();
+        dq.addFirst(1);
+        dq.addFirst(2);
+        dq.addLast(4);
+        dq.addLast(3);
+        System.out.println(dq);
+        dq.removeFirst();
+        dq.removeLast();
+        System.out.println(dq);
 
-//     }
-// }
+        System.out.println("first element :"+dq.getFirst());
+        System.out.println("last element :"+dq.getLast());
+    }
+}
