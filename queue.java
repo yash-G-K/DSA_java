@@ -352,32 +352,73 @@
 
 
 //first non repeating character ina  stream
- import java.util.*;
+//  import java.util.*;
 
-public class queue {
-public static char isduplicate(String str) {
-    int freq[] = new int[26];
-    Queue<Character> q = new LinkedList<>();
+// public class queue {
+// public static char isduplicate(String str) {
+//     int freq[] = new int[26];
+//     Queue<Character> q = new LinkedList<>();
 
-    for(int  i = 0; i < str.length();i++){
-        char ch = str.charAt(i);
-        q.add(ch);
-        freq[ch -'a']++;
-        while(!q.isEmpty() && freq[q.peek() -'a'] > 1){
-            q.remove();
+//     for(int  i = 0; i < str.length();i++){
+//         char ch = str.charAt(i);
+//         q.add(ch);
+//         freq[ch -'a']++;
+//         while(!q.isEmpty() && freq[q.peek() -'a'] > 1){
+//             q.remove();
+//         }
+//         if(q.isEmpty()){
+//             System.out.print(-1 + " ");
+//         } else {
+//             System.out.print(q.peek() + " ");
+//         }
+//     }
+//     return ' ';
+// }
+//     public static void main(String args[]) {
+//         String str = "aabbccxxb";
+//         System.out.println(isduplicate(str));
+//     }
+// }
+
+
+// interleave 2 halves of the queue(even length)
+import java.util.*;
+public class queue{
+    public static void interleave(Queue<Integer> q){
+        Queue<Integer> firsthalf = new LinkedList<>();
+        int size = q.size();
+
+        for(int i=0; i<size/2; i++){
+            firsthalf.add(q.remove());
         }
-        if(q.isEmpty()){
-            System.out.print(-1 + " ");
-        } else {
-            System.out.print(q.peek() + " ");
+
+        while(!firsthalf.isEmpty()){
+            q.add(firsthalf.remove());
+            q.add(q.remove());
+        }
+
+    }
+    public static void main(String args[]){
+        Queue<Integer> q = new LinkedList<>();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        q.add(4);
+        q.add(5);
+        q.add(6);
+        q.add(7);
+        q.add(8);
+        q.add(9);
+        q.add(10);
+
+        interleave(q);
+        // print queue
+        while(!q.isEmpty()){
+            System.out.print(q.remove() + " ");
         }
     }
-    return ' ';
 }
-    public static void main(String args[]) {
-        String str = "aabbccxxb";
-        System.out.println(isduplicate(str));
-    }
-}
+
+
 
     
