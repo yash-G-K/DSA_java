@@ -117,29 +117,71 @@
 
 
 // indian coin change problem
+// import java.util.*;
+// public class greedyapproach{
+//     public static void main(String[] args){
+//         Integer coins[] ={1,2,5,10,20,50,100,200,500,2000};
+//         int amount = 590;
+//         int count = 0;
+//         ArrayList<Integer> ans = new ArrayList<>();
+//         // sorting in descending order
+//         Arrays.sort(coins, Comparator.reverseOrder());
+
+//         for(int i = 0; i < coins.length-1;i++) {
+//             if(coins[i] <= amount){
+//                 while(coins[i] <= amount){
+//                     amount -= coins[i];
+//                     count++;
+//                     ans.add(coins[i]);
+//                 }
+//             }
+
+//         }
+//         System.out.println("Minimum number of coins = " + count);
+//         for(int i =0 ; i<ans.size() ; i++){
+//             System.out.print(ans.get(i) + " ");
+//         }
+//     }
+// }
+
+
+// job sequencing problem
 import java.util.*;
 public class greedyapproach{
-    public static void main(String[] args){
-        Integer coins[] ={1,2,5,10,20,50,100,200,500,2000};
-        int amount = 590;
-        int count = 0;
-        ArrayList<Integer> ans = new ArrayList<>();
-        // sorting in descending order
-        Arrays.sort(coins, Comparator.reverseOrder());
+    static class Job{
+        int id;
+        int profit;
+        int deadline;
 
-        for(int i = 0; i < coins.length-1;i++) {
-            if(coins[i] <= amount){
-                while(coins[i] <= amount){
-                    amount -= coins[i];
-                    count++;
-                    ans.add(coins[i]);
-                }
-            }
-
+        public Job(int i, int d, int p){
+            this.id = i;
+            this.profit = p;
+            this.deadline = d;
         }
-        System.out.println("Minimum number of coins = " + count);
-        for(int i =0 ; i<ans.size() ; i++){
-            System.out.print(ans.get(i) + " ");
+    }
+    public static void main(String[] args) {
+        // Corrected Job data: {id, deadline, profit}
+        int[][] JobData = {{1, 4, 20}, {2, 1, 10}, {3, 1, 40}, {4, 1, 30}}; 
+        ArrayList<Job> jobs = new ArrayList<>();
+        
+        for(int i = 0 ; i < JobData.length; i++){
+            jobs.add(new Job(JobData[i][0], JobData[i][1], JobData[i][2]));
+        }
+        // sorting based on profit
+        Collections.sort(jobs, (a,b) -> b.profit - a.profit);
+        ArrayList<Integer> seq = new ArrayList<>();
+
+        int time = 0;
+        for(int i = 0 ; i < jobs.size() ; i++){
+            Job currjob = jobs.get(i);
+            if(time < currjob.deadline){
+                seq.add(currjob.id);
+                time++;
+            }
+        }
+        System.out.println("Job sequence = " + seq.size());
+        for(int i = 0 ; i < seq.size() ; i++){
+            System.out.print(seq.get(i) + " ");
         }
     }
 }
