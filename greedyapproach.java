@@ -41,36 +41,76 @@
 
 
 //fractional knapsack problem
+// import java.util.*;
+// public class greedyapproach{
+//     public static void main(String[] args){
+//         int val[] = {60,100,120};
+//         int wt[] = {10,20,30};
+//         int cap = 50;
+
+//         double ratio[][] = new double[val.length][2];
+//         // 0th col = index and 1st col = ratio of array to track elementspostion after sorting
+//         for(int i =0 ; i< val.length ; i++){
+//             ratio[i][0] = i;
+//             ratio[i][1] = val[i]/(double)wt[i];
+//         }
+//         //sorting based on ratio
+//         Arrays.sort(ratio,Comparator.comparingDouble(o -> o[1]));
+
+//         int capacity = cap;
+//         int finalval = 0;
+//         for(int i =ratio.length-1;i >=0 ;i--){
+//             int idx = (int)ratio[i][0];
+//             if(wt[idx] <= capacity){
+//                 finalval += val[idx];
+//                 capacity -= wt[idx];
+//             }else{
+//                 // include fractiona, if wt is more than capacity
+//                 finalval += ratio[i][1] * capacity;
+//                 capacity = 0;
+//                 break;
+//             }
+//         }
+//         System.out.println("Final value in knapsack = " + finalval);
+//     }
+// }
+
+
+//  minimum absolute difference
+// import java.util.*;
+// public class greedyapproach{
+//     public static void main(String[] args){
+//         int a[] = {1,2,3}   ;
+//         int b[] = {2,3,1}   ;
+//         Arrays.sort(a);
+//         Arrays.sort(b);
+
+//         int mindiff = 0;
+//         for(int i =0 ; i<a.length ; i++){
+//             mindiff += Math.abs(a[i]-b[i]);
+//     }
+//     System.out.println("Minimum absolute difference = " + mindiff);
+//     }
+// }
+
+
+// max length chain of pairs
 import java.util.*;
 public class greedyapproach{
     public static void main(String[] args){
-        int val[] = {60,100,120};
-        int wt[] = {10,20,30};
-        int cap = 50;
+        int pairs[][] = {{5,24},{15,25},{27,40},{50,60}};
+        // sorting based on second element of pair
+        Arrays.sort(pairs,Comparator.comparingDouble(o -> o[1]));
 
-        double ratio[][] = new double[val.length][2];
-        // 0th col = index and 1st col = ratio of array to track elementspostion after sorting
-        for(int i =0 ; i< val.length ; i++){
-            ratio[i][0] = i;
-            ratio[i][1] = val[i]/(double)wt[i];
-        }
-        //sorting based on ratio
-        Arrays.sort(ratio,Comparator.comparingDouble(o -> o[1]));
+        int chainlen = 1;
+        int chainend = pairs[0][1];
 
-        int capacity = cap;
-        int finalval = 0;
-        for(int i =ratio.length-1;i >=0 ;i--){
-            int idx = (int)ratio[i][0];
-            if(wt[idx] <= capacity){
-                finalval += val[idx];
-                capacity -= wt[idx];
-            }else{
-                // include fractiona, if wt is more than capacity
-                finalval += ratio[i][1] * capacity;
-                capacity = 0;
-                break;
+        for(int i =1 ; i<pairs.length ; i++){
+            if(pairs[i][0] > chainend){
+                chainlen++;
+                chainend = pairs[i][1];
             }
         }
-        System.out.println("Final value in knapsack = " + finalval);
+        System.out.println("Maximum length of chain = " + chainlen);
     }
 }
