@@ -95,22 +95,51 @@
 
 
 // max length chain of pairs
+// import java.util.*;
+// public class greedyapproach{
+//     public static void main(String[] args){
+//         int pairs[][] = {{5,24},{15,25},{27,40},{50,60}};
+//         // sorting based on second element of pair
+//         Arrays.sort(pairs,Comparator.comparingDouble(o -> o[1]));
+
+//         int chainlen = 1;
+//         int chainend = pairs[0][1];
+
+//         for(int i =1 ; i<pairs.length ; i++){
+//             if(pairs[i][0] > chainend){
+//                 chainlen++;
+//                 chainend = pairs[i][1];
+//             }
+//         }
+//         System.out.println("Maximum length of chain = " + chainlen);
+//     }
+// }
+
+
+// indian coin change problem
 import java.util.*;
 public class greedyapproach{
     public static void main(String[] args){
-        int pairs[][] = {{5,24},{15,25},{27,40},{50,60}};
-        // sorting based on second element of pair
-        Arrays.sort(pairs,Comparator.comparingDouble(o -> o[1]));
+        Integer coins[] ={1,2,5,10,20,50,100,200,500,2000};
+        int amount = 590;
+        int count = 0;
+        ArrayList<Integer> ans = new ArrayList<>();
+        // sorting in descending order
+        Arrays.sort(coins, Comparator.reverseOrder());
 
-        int chainlen = 1;
-        int chainend = pairs[0][1];
-
-        for(int i =1 ; i<pairs.length ; i++){
-            if(pairs[i][0] > chainend){
-                chainlen++;
-                chainend = pairs[i][1];
+        for(int i = 0; i < coins.length-1;i++) {
+            if(coins[i] <= amount){
+                while(coins[i] <= amount){
+                    amount -= coins[i];
+                    count++;
+                    ans.add(coins[i]);
+                }
             }
+
         }
-        System.out.println("Maximum length of chain = " + chainlen);
+        System.out.println("Minimum number of coins = " + count);
+        for(int i =0 ; i<ans.size() ; i++){
+            System.out.print(ans.get(i) + " ");
+        }
     }
 }
