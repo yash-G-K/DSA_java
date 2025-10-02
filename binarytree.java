@@ -1,4 +1,5 @@
 // preoreder tree traversal 
+import java.util.*;
 public class binarytree{
     static class node{
         int data;
@@ -54,6 +55,36 @@ public class binarytree{
         System.out.print(root.data + " ");
     }
 
+    // level order traversal of a tree
+    public static void levelorder(node root) {
+    if (root == null) {
+        return;
+    }
+    Queue<node> q = new LinkedList<>();
+    q.add(root);
+    q.add(null); // marker for end of level
+
+    while (!q.isEmpty()) {
+        node curr = q.remove();
+        if (curr == null) {
+            System.out.println(); // new line after each level
+            if (q.isEmpty()) {
+                break;
+            } else {
+                q.add(null); // add marker for next level
+            }
+        } else {
+            System.out.print(curr.data + " ");
+            if (curr.left != null) {
+                q.add(curr.left);
+            }
+            if (curr.right != null) {
+                q.add(curr.right);
+            }
+        }
+    }
+}
+
 public static void main(String args[]){
     int nodes [] = {1,2,3,-1,-1,4,-1,-1,5,6,-1,-1,7,-1,-1};
     binarytree tree = new binarytree();
@@ -66,7 +97,11 @@ public static void main(String args[]){
     System.err.println("");
     System.out.println("postorder traversal of a tree");
     tree.postorder(root);
-}
-}
 
+    System.err.println("");
+    System.out.println("level order traversal of a tree");
+    tree.levelorder(root);
+    
+}
+}
 
