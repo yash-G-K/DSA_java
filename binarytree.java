@@ -140,6 +140,16 @@ public class binarytree {
             return lcount + rcount + 1;
     }
 
+    //sum of the nodes in a tree
+    public static int sumofnodes(node root) {
+        if (root == null) {
+            return 0;
+        }
+       int lsum= sumofnodes(root.left) ;
+         int rsum= sumofnodes(root.right);
+            return lsum + rsum + root.data;
+    }
+
     public static void main(String[] args) {
         node root = new node(1);
         root.left = new node(2);
@@ -157,6 +167,7 @@ public class binarytree {
 
         System.out.println("Height of tree: " + height(root));
         System.out.println("Total number of nodes in tree: " + nodecount(root));
+        System.out.println("Sum of all nodes in tree: " + sumofnodes(root));
 
     }
 }
