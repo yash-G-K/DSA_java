@@ -130,6 +130,16 @@ public class binarytree {
         return Math.max(leftHeight, rightHeight) + 1;
     }
 
+    // total number of nodes in a tree
+    public static int nodecount(node root) {
+        if (root == null) {
+            return 0;
+        }
+       int lcount= nodecount(root.left) ;
+         int rcount= nodecount(root.right);
+            return lcount + rcount + 1;
+    }
+
     public static void main(String[] args) {
         node root = new node(1);
         root.left = new node(2);
@@ -139,6 +149,16 @@ public class binarytree {
         root.right.left = new node(6);
         root.right.right = new node(7);
 
+//         1
+//       /   \
+//      2     3
+//     / \   / \
+//    4   5 6   7
+
         System.out.println("Height of tree: " + height(root));
+        System.out.println("Total number of nodes in tree: " + nodecount(root));
+
     }
 }
+
+
