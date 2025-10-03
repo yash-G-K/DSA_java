@@ -45,6 +45,27 @@ public class btree2 {
             return new TreeInfo(myHeight, myDiameter);
         }
     }
+    // //diameter of the treee 2nd approach
+    static class Info {
+        int height;
+        int diameter;
+
+        Info(int height, int diameter) {
+            this.height = height;
+            this.diameter = diameter;
+        }
+    }
+    public static Info diameter2(btree root){
+        if(root == null){
+            return new Info(0,0);
+        }
+        Info leftInfo = diameter2(root.left);
+        Info rightInfo = diameter2(root.right);
+        int dia = Math.max(Math.max(leftInfo.height, rightInfo.height), leftInfo.height + rightInfo.height + 1);
+        int ht = Math.max(leftInfo.height, rightInfo.height) + 1;
+        return new Info(ht, dia);
+
+    }
 
     public static void main(String args[]) {
         int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
@@ -52,5 +73,7 @@ public class btree2 {
         btree root = tree.buildtree(nodes);
 
         System.out.println("Diameter of the tree: " + tree.diameter(root).diameter);
+        System.out.println("Diameter of the tree (optimized): " + diameter2(root).diameter);
+        
     }
 }
