@@ -80,6 +80,36 @@ public class btree3 {
         return root;
     }
 
+    // find level of a node in a binary tree
+    public static int findlevel(btree root, int k){
+        if(root == null){
+            return -1;
+        }
+        if(root.data == k){
+            return 0;
+        }
+        int leftlevel = findlevel(root.left, k);
+        int rightlevel = findlevel(root.right, k);
+
+        if(leftlevel == -1 && rightlevel == -1){
+            return -1;
+        }
+        else if(leftlevel == -1){
+            return rightlevel + 1;
+        }
+        else{
+            return leftlevel + 1;
+        }
+
+    }
+    //min distance between two nodes
+    public static int mindist(btree root, int n1, int n2){
+        btree lca = lca2(root, n1, n2);
+        int dist1 = findlevel(lca, n1);
+        int dist2 = findlevel(lca, n2);
+        return dist1 + dist2;
+    }
+
     public static void main(String[] args) {
         // ✅ Manual tree creation
         btree root = new btree(1);
@@ -98,5 +128,8 @@ public class btree3 {
         System.out.println("\nLCA of " + n1 + " and " + n2 + ": " + lca(root, n1, n2).data);
 
         System.out.println("LCA of " + n1 + " and " + n2 + " using approach 2: " + lca2(root, n1, n2).data);
+
+        int dist = mindist(root, n1, n2);
+        System.out.println("Minimum distance between " + n1 + " and " + n2 + ": " + dist);      
     }
 }
