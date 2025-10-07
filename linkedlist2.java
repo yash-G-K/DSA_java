@@ -399,6 +399,5 @@ public class linkedlist2 {
         ll.print();        // expected: 4<->3<->2<->1<->null
         ll.reverse(); // expected: 1<->2<->3<->4<->null
         System.out.println("Size = " + ll.size);
-
     }
 }

@@ -294,6 +294,10 @@ public class stack1{
             System.out.print(nxtgtr[i] +" ");
         }
         System.out.println();
+        //next greater right
+        //next smaller right
+        //next greater Left
+        // next smller left
   }
  }
 
