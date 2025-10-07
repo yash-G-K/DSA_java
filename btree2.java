@@ -1,7 +1,12 @@
+import java.util.*;
+
+// Diameter of a binary tree
 public class btree2 {
+
     static class btree {
         int data;
         btree left, right;
+
         btree(int data) {
             this.data = data;
             left = right = null;
@@ -10,6 +15,7 @@ public class btree2 {
 
     static class TreeInfo {
         int height, diameter;
+
         TreeInfo(int height, int diameter) {
             this.height = height;
             this.diameter = diameter;
@@ -21,7 +27,8 @@ public class btree2 {
 
         public static btree buildtree(int nodes[]) {
             idx++;
-            if (nodes[idx] == -1) return null;
+            if (nodes[idx] == -1)
+                return null;
 
             btree newnode = new btree(nodes[idx]);
             newnode.left = buildtree(nodes);
@@ -30,7 +37,8 @@ public class btree2 {
         }
 
         public static TreeInfo diameter(btree root) {
-            if (root == null) return new TreeInfo(0, 0);
+            if (root == null)
+                return new TreeInfo(0, 0);
 
             TreeInfo left = diameter(root.left);
             TreeInfo right = diameter(root.right);
@@ -46,6 +54,7 @@ public class btree2 {
     // Optimized diameter
     static class Info {
         int height, diameter;
+
         Info(int height, int diameter) {
             this.height = height;
             this.diameter = diameter;
@@ -53,12 +62,14 @@ public class btree2 {
     }
 
     public static Info diameter2(btree root) {
-        if (root == null) return new Info(0, 0);
+        if (root == null)
+            return new Info(0, 0);
 
         Info leftInfo = diameter2(root.left);
         Info rightInfo = diameter2(root.right);
 
-        int dia = Math.max(Math.max(leftInfo.diameter, rightInfo.diameter), leftInfo.height + rightInfo.height + 1);
+        int dia = Math.max(Math.max(leftInfo.diameter, rightInfo.diameter),
+                leftInfo.height + rightInfo.height + 1);
         int ht = Math.max(leftInfo.height, rightInfo.height) + 1;
 
         return new Info(ht, dia);
@@ -66,16 +77,20 @@ public class btree2 {
 
     // Check if identical
     public static boolean isIdentical(btree node, btree subroot) {
-        if (node == null && subroot == null) return true;
-        if (node == null || subroot == null || node.data != subroot.data) return false;
+        if (node == null && subroot == null)
+            return true;
+        if (node == null || subroot == null || node.data != subroot.data)
+            return false;
 
         return isIdentical(node.left, subroot.left) && isIdentical(node.right, subroot.right);
     }
 
     // Check if subroot is subtree of root
     public static boolean subtree(btree root, btree subroot) {
-        if (root == null) return false;
-        if (subroot == null) return true;
+        if (root == null)
+            return false;
+        if (subroot == null)
+            return true;
 
         if (root.data == subroot.data) {
             if (isIdentical(root, subroot)) {
@@ -86,25 +101,70 @@ public class btree2 {
         return subtree(root.left, subroot) || subtree(root.right, subroot);
     }
 
-public static void main(String args[]) {
-    int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
-    binarytree tree = new binarytree();
+    // Top view of binary tree
+    static class InfoNode {
+        btree node;
+        int hd;
 
-    binarytree.idx = -1;
-    btree root = tree.buildtree(nodes);
+        InfoNode(btree node, int hd) {
+            this.node = node;
+            this.hd = hd;
+        }
+    }
 
-    System.out.println("Diameter of the tree: " + tree.diameter(root).diameter);
-    System.out.println("Diameter of the tree (optimized): " + diameter2(root).diameter);
+    public static void topview(btree root) {
+        if (root == null)
+            return;
 
-    int subnodes[] = {3,-1,6,-1,-1};
-    binarytree subTree = new binarytree();
+        Queue<InfoNode> q = new LinkedList<>();
+        HashMap<Integer, btree> map = new HashMap<>();
 
-    binarytree.idx = -1; // ✅ reset before building new tree
-    btree subroot = subTree.buildtree(subnodes);
+        int min = 0, max = 0;
+        q.add(new InfoNode(root, 0));
 
-    System.out.println("Is subtree: " + subtree(root, subroot));
+        while (!q.isEmpty()) {
+            InfoNode curr = q.remove();
+
+            if (!map.containsKey(curr.hd)) {
+                map.put(curr.hd, curr.node);
+            }
+
+            if (curr.node.left != null) {
+                q.add(new InfoNode(curr.node.left, curr.hd - 1));
+                min = Math.min(min, curr.hd - 1);
+            }
+            if (curr.node.right != null) {
+                q.add(new InfoNode(curr.node.right, curr.hd + 1));
+                max = Math.max(max, curr.hd + 1);
+            }
+        }
+
+        // Print top view
+        for (int i = min; i <= max; i++) {
+            System.out.print(map.get(i).data + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+        int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
+        binarytree tree = new binarytree();
+
+        binarytree.idx = -1;
+        btree root = tree.buildtree(nodes);
+
+        System.out.println("Diameter of the tree: " + tree.diameter(root).diameter);
+        System.out.println("Diameter of the tree (optimized): " + diameter2(root).diameter);
+
+        int subnodes[] = { 3, -1, 6, -1, -1 };
+        binarytree subTree = new binarytree();
+
+        binarytree.idx = -1; // ✅ reset before building new tree
+        btree subroot = subTree.buildtree(subnodes);
+
+        System.out.println("Is subtree: " + subtree(root, subroot));
+
+        System.out.println("Top view of the tree:");
+        topview(root);
+    }
 }
-}
-
-// Top view of a binary tree
-
