@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class btree3 {
     static class btree {
         int data;
@@ -11,7 +12,7 @@ public class btree3 {
     }
 
     static class binarytree {
-        //kth kevel of a tree
+        // Kth level of a tree
         public static void klevel(btree root, int level, int k) {
             if (root == null) {
                 return;
@@ -25,89 +26,139 @@ public class btree3 {
         }
     }
 
-    // print path from root to a node
+    // Print path from root to a given node
     public static boolean getPath(btree root, int n, ArrayList<btree> path) {
         if (root == null) {
             return false;
         }
+
         path.add(root);
+
         if (root.data == n) {
             return true;
         }
-        boolean foundLeft = getPath(root.left, n, path);
-        boolean foundRight = getPath(root.right, n, path);
-        if (foundLeft || foundRight) {
+
+        if (getPath(root.left, n, path) || getPath(root.right, n, path)) {
             return true;
         }
-        path.remove(path.size() - 1); // backtracking
+
+        path.remove(path.size() - 1); // backtrack
         return false;
     }
 
-    // ancestors of a node in a binary tree
+    // LCA using path comparison
     public static btree lca(btree root, int n1, int n2) {
         ArrayList<btree> path1 = new ArrayList<>();
         ArrayList<btree> path2 = new ArrayList<>();
 
-        getPath(root, n1, path1);
-        getPath(root, n2, path2);
+        if (!getPath(root, n1, path1) || !getPath(root, n2, path2)) {
+            return null; // if either node not found
+        }
 
-        // last common ancestor
-        int i = 0;
-        for (; i < path1.size() && i < path2.size(); i++) {
-            if (path1.get(i) != (path2.get(i))) {
+        int i;
+        for (i = 0; i < path1.size() && i < path2.size(); i++) {
+            if (path1.get(i) != path2.get(i)) {
                 break;
             }
         }
-        // last equal node
-        btree lca = path1.get(i - 1);
-        return lca;
+
+        return path1.get(i - 1);
     }
 
-    // approach 2 for lca
-    public static btree lca2(btree root, int n1, int n2){
-        if(root == null || root.data == n1 || root.data == n2){
+    // LCA - Approach 2 (optimized)
+    public static btree lca2(btree root, int n1, int n2) {
+        if (root == null || root.data == n1 || root.data == n2) {
             return root;
         }
+
         btree leftlca = lca2(root.left, n1, n2);
         btree rightlca = lca2(root.right, n1, n2);
 
-        if(rightlca == null){
-            return leftlca;
-        }
-        if(leftlca == null){
+        if (leftlca == null) {
             return rightlca;
         }
+        if (rightlca == null) {
+            return leftlca;
+        }
+
         return root;
     }
 
-    // find level of a node in a binary tree
-    public static int findlevel(btree root, int k){
-        if(root == null){
+    // Find level of a node in a binary tree
+    public static int findlevel(btree root, int k) {
+        if (root == null) {
             return -1;
         }
-        if(root.data == k){
+        if (root.data == k) {
             return 0;
         }
+
         int leftlevel = findlevel(root.left, k);
         int rightlevel = findlevel(root.right, k);
 
-        if(leftlevel == -1 && rightlevel == -1){
+        if (leftlevel == -1 && rightlevel == -1) {
             return -1;
-        }
-        else if(leftlevel == -1){
+        } else if (leftlevel == -1) {
             return rightlevel + 1;
-        }
-        else{
+        } else {
             return leftlevel + 1;
         }
-
     }
-    //min distance between two nodes
-    public static int mindist(btree root, int n1, int n2){
+
+    // Minimum distance between two nodes
+    public static int mindist(btree root, int n1, int n2) {
         btree lca = lca2(root, n1, n2);
         int dist1 = findlevel(lca, n1);
         int dist2 = findlevel(lca, n2);
         return dist1 + dist2;
+    }
+
+    // Kth ancestor of a node in a binary tree
+    public static int kthancestor(btree root, int n, int k) {
+        if (root == null) {
+            return -1;
+        }
+        if (root.data == n) {
+            return 0;
+        }
+
+        int leftdist = kthancestor(root.left, n, k);
+        int rightdist = kthancestor(root.right, n, k);
+
+        if (leftdist == -1 && rightdist == -1) {
+            return -1;
+        }
+
+        int max = Math.max(leftdist, rightdist);
+        if (max + 1 == k) {
+            System.out.println(root.data);
+        }
+
+        return max + 1;
+    }
+
+    // Transform tree into sum tree
+    public static int transform(btree root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftsum = transform(root.left);
+        int rightsum = transform(root.right);
+
+        int oldValue = root.data;
+        root.data = leftsum + rightsum;
+        return oldValue + root.data;
+    }
+
+    // Preorder traversal
+    public static void preorder(btree root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.data + " ");
+        preorder(root.left);
+        preorder(root.right);
     }
 
     public static void main(String[] args) {
@@ -120,16 +171,24 @@ public class btree3 {
         root.right.left = new btree(6);
         root.right.right = new btree(7);
 
-        int k = 2; // Level to print (root is level 0)
-        System.out.println("Nodes at level " + k + ":");
-        binarytree.klevel(root, 0, k);
+        // Uncomment any section to test:
 
-        int n1 = 4, n2 = 6;
-        System.out.println("\nLCA of " + n1 + " and " + n2 + ": " + lca(root, n1, n2).data);
+        // int k = 2;
+        // System.out.println("Nodes at level " + k + ":");
+        // binarytree.klevel(root, 0, k);
 
-        System.out.println("LCA of " + n1 + " and " + n2 + " using approach 2: " + lca2(root, n1, n2).data);
+        // int n1 = 4, n2 = 6;
+        // System.out.println("\nLCA of " + n1 + " and " + n2 + ": " + lca(root, n1, n2).data);
+        // System.out.println("LCA (optimized): " + lca2(root, n1, n2).data);
+        // System.out.println("Minimum distance between " + n1 + " and " + n2 + ": " + mindist(root, n1, n2));
 
-        int dist = mindist(root, n1, n2);
-        System.out.println("Minimum distance between " + n1 + " and " + n2 + ": " + dist);      
+        // int k1 = 2;
+        // System.out.print(k1 + "th ancestor of " + n1 + ": ");
+        // kthancestor(root, n1, k1);
+
+        transform(root);
+        System.out.println("Preorder traversal of the transformed sum tree:");
+        preorder(root);
+        System.out.println();
     }
 }
