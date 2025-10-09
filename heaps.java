@@ -118,54 +118,91 @@
 
 
 // heap sort 
+// public class heaps{
+//     public static void heapify(int arr[], int i, int n){
+//         int left = 2 *i + 1;
+//         int right = 2 * i + 2;
+//         int maxIdx = i;
+//         if(left < arr.length && arr[left] > arr[maxIdx]){
+//             maxIdx = left;
+//         }
+
+//         if(right < arr.length && arr[right] > arr[maxIdx]){
+//             maxIdx = right;
+//         }
+
+//         if(maxIdx != i){
+//             //swap 
+//             int temp = arr[i];
+//             arr[i] = arr[maxIdx];
+//             arr[maxIdx] = temp;
+
+//             heapify(arr, maxIdx, n);
+//             return;
+//         }
+//     }
+
+//     public void heapSort(int arr[]){
+//         //step1 - build heap
+//         int n = arr.length;
+//         for(int i = n/2; i >= 0; i--){
+//             heapify(arr, i, n);
+//         }
+
+//         //step2 - swap and heapify
+//         for(int i = n - 1; i > 0; i--){
+//             //swap
+//             int temp = arr[0];
+//             arr[0] = arr[i];
+//             arr[i] = temp;
+
+//             heapify(arr, 0, i);
+//         }
+//     }
+
+//     public static void main(String[] args) {
+//         int arr[] = {1,5,3,4,2};
+//         heaps h = new heaps();
+//         h.heapSort(arr);
+//         for(int i = 0; i < arr.length; i++){
+//             System.out.print(arr[i] + " ");
+//         }  
+//     }   
+// }
+
+
+// nearby cars
+import java.util.*;
 public class heaps{
-    public static void heapify(int arr[], int i, int n){
-        int left = 2 *i + 1;
-        int right = 2 * i + 2;
-        int maxIdx = i;
-        if(left < arr.length && arr[left] > arr[maxIdx]){
-            maxIdx = left;
+    public static class point implements Comparable<point> {
+        int x;
+        int y;
+        int distsq;
+        public point(int x, int y, int distsq){
+            this.x = x;
+            this.y = y;
+            this.distsq = distsq;
         }
-
-        if(right < arr.length && arr[right] > arr[maxIdx]){
-            maxIdx = right;
-        }
-
-        if(maxIdx != i){
-            //swap 
-            int temp = arr[i];
-            arr[i] = arr[maxIdx];
-            arr[maxIdx] = temp;
-
-            heapify(arr, maxIdx, n);
-            return;
+        @Override
+        public int compareTo(point p2){
+            return this.distsq - p2.distsq;  //ascending order
         }
     }
-
-    public void heapSort(int arr[]){
-        //step1 - build heap
-        int n = arr.length;
-        for(int i = n/2; i >= 0; i--){
-            heapify(arr, i, n);
-        }
-
-        //step2 - swap and heapify
-        for(int i = n - 1; i > 0; i--){
-            //swap
-            int temp = arr[0];
-            arr[0] = arr[i];
-            arr[i] = temp;
-
-            heapify(arr, 0, i);
-        }
-    }
-
     public static void main(String[] args) {
-        int arr[] = {1,5,3,4,2};
-        heaps h = new heaps();
-        h.heapSort(arr);
-        for(int i = 0; i < arr.length; i++){
-            System.out.print(arr[i] + " ");
-        }  
-    }   
+        int pts[][] = {{3,3}, {5,-1}, {-2,4}};
+        int k = 2;
+
+        PriorityQueue<point> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int[] pt : pts) {
+            int x = pt[0];
+            int y = pt[1];
+            int distsq = x*x + y*y;
+            pq.add(new point(x, y, distsq));
+
+            //keep k smallest distance
+            if(pq.size() > k){
+                pq.remove();
+            }
+        }
+    }
 }
