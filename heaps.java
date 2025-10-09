@@ -172,37 +172,59 @@
 
 
 // nearby cars
+// import java.util.*;
+// public class heaps{
+//     public static class point implements Comparable<point> {
+//         int x;
+//         int y;
+//         int distsq;
+//         public point(int x, int y, int distsq){
+//             this.x = x;
+//             this.y = y;
+//             this.distsq = distsq;
+//         }
+//         @Override
+//         public int compareTo(point p2){
+//             return this.distsq - p2.distsq;  //ascending order
+//         }
+//     }
+//     public static void main(String[] args) {
+//         int pts[][] = {{3,3}, {5,-1}, {-2,4}};
+//         int k = 2;
+
+//         PriorityQueue<point> pq = new PriorityQueue<>(Collections.reverseOrder());
+//         for (int[] pt : pts) {
+//             int x = pt[0];
+//             int y = pt[1];
+//             int distsq = x*x + y*y;
+//             pq.add(new point(x, y, distsq));
+
+//             //keep k smallest distance
+//             if(pq.size() > k){
+//                 pq.remove();
+//             }
+//         }
+//     }
+// }
+
+
+//connecting n ropes with minimum cost
 import java.util.*;
 public class heaps{
-    public static class point implements Comparable<point> {
-        int x;
-        int y;
-        int distsq;
-        public point(int x, int y, int distsq){
-            this.x = x;
-            this.y = y;
-            this.distsq = distsq;
-        }
-        @Override
-        public int compareTo(point p2){
-            return this.distsq - p2.distsq;  //ascending order
-        }
-    }
     public static void main(String[] args) {
-        int pts[][] = {{3,3}, {5,-1}, {-2,4}};
-        int k = 2;
-
-        PriorityQueue<point> pq = new PriorityQueue<>(Collections.reverseOrder());
-        for (int[] pt : pts) {
-            int x = pt[0];
-            int y = pt[1];
-            int distsq = x*x + y*y;
-            pq.add(new point(x, y, distsq));
-
-            //keep k smallest distance
-            if(pq.size() > k){
-                pq.remove();
-            }
+        int ropes[] = { 2, 3, 3, 4, 6 };
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for(int i = 0; i < ropes.length; i++){
+            pq.add(ropes[i]);
         }
+        int  cost = 0;
+        while(pq.size() > 1){
+            int first = pq.remove();
+            int second = pq.remove();
+            int sum = first + second;
+            cost += sum;
+            pq.add(sum);
+        }   
+        System.out.println("Minimum cost to connect ropes: " + cost);
     }
 }
