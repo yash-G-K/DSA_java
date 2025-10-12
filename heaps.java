@@ -209,22 +209,61 @@
 
 
 //connecting n ropes with minimum cost
+// import java.util.*;
+// public class heaps{
+//     public static void main(String[] args) {
+//         int ropes[] = { 2, 3, 3, 4, 6 };
+//         PriorityQueue<Integer> pq = new PriorityQueue<>();
+//         for(int i = 0; i < ropes.length; i++){
+//             pq.add(ropes[i]);
+//         }
+//         int  cost = 0;
+//         while(pq.size() > 1){
+//             int first = pq.remove();
+//             int second = pq.remove();
+//             int sum = first + second;
+//             cost += sum;
+//             pq.add(sum);
+//         }   
+//         System.out.println("Minimum cost to connect ropes: " + cost);
+//     }
+// }
+
+
+// weakest soldiers
 import java.util.*;
 public class heaps{
-    public static void main(String[] args) {
-        int ropes[] = { 2, 3, 3, 4, 6 };
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for(int i = 0; i < ropes.length; i++){
-            pq.add(ropes[i]);
+    public static class row implements Comparable<row>{
+        int soldiers;
+        int idx;
+        public row(int soldiers, int idx){
+            this.soldiers = soldiers;
+            this.idx = idx;
         }
-        int  cost = 0;
-        while(pq.size() > 1){
-            int first = pq.remove();
-            int second = pq.remove();
-            int sum = first + second;
-            cost += sum;
-            pq.add(sum);
-        }   
-        System.out.println("Minimum cost to connect ropes: " + cost);
+        @Override
+        public int compareTo(row r2){
+            if(this.soldiers == r2.soldiers){
+                return this.idx - r2.idx;
+            } else {
+                return this.soldiers - r2.soldiers; //ascending order
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int army[][] = {{1,0,0,0}, {1,0,0,0}, {1,1,1,1}, {1,0,0,0}};
+        int k = 2;
+
+        PriorityQueue<row> pq =new PriorityQueue<>();
+        for(int j = 0; j < army.length; j++){
+            int count = 0;
+            for(int i = 0; i < army[0].length; i++){
+                count += army[j][i] ==1 ? 1 : 0;
+            }
+            pq.add(new row(count, j));
+        }
+        for(int i = 0; i < k; i++){
+            System.out.println(pq.remove().idx);
+        }
     }
 }
