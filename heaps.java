@@ -231,39 +231,84 @@
 
 
 // weakest soldiers
+// import java.util.*;
+// public class heaps{
+//     public static class row implements Comparable<row>{
+//         int soldiers;
+//         int idx;
+//         public row(int soldiers, int idx){
+//             this.soldiers = soldiers;
+//             this.idx = idx;
+//         }
+//         @Override
+//         public int compareTo(row r2){
+//             if(this.soldiers == r2.soldiers){
+//                 return this.idx - r2.idx;
+//             } else {
+//                 return this.soldiers - r2.soldiers; //ascending order
+//             }
+//         }
+//     }
+
+//     public static void main(String[] args) {
+//         int army[][] = {{1,0,0,0}, {1,0,0,0}, {1,1,1,1}, {1,0,0,0}};
+//         int k = 2;
+
+//         PriorityQueue<row> pq =new PriorityQueue<>();
+//         for(int j = 0; j < army.length; j++){
+//             int count = 0;
+//             for(int i = 0; i < army[0].length; i++){
+//                 count += army[j][i] ==1 ? 1 : 0;
+//             }
+//             pq.add(new row(count, j));
+//         }
+//         for(int i = 0; i < k; i++){
+//             System.out.println(pq.remove().idx);
+//         }
+//     }
+// }
+
+
+//xliding window maximum
 import java.util.*;
 public class heaps{
-    public static class row implements Comparable<row>{
-        int soldiers;
+    public static class pair implements Comparable<pair>{
+        int value;
         int idx;
-        public row(int soldiers, int idx){
-            this.soldiers = soldiers;
+        public pair(int value, int idx){
+            this.value = value;
             this.idx = idx;
         }
         @Override
-        public int compareTo(row r2){
-            if(this.soldiers == r2.soldiers){
-                return this.idx - r2.idx;
-            } else {
-                return this.soldiers - r2.soldiers; //ascending order
-            }
+        public int compareTo(pair p2){
+            return p2.value - this.value; //descending order
         }
     }
-
     public static void main(String[] args) {
-        int army[][] = {{1,0,0,0}, {1,0,0,0}, {1,1,1,1}, {1,0,0,0}};
-        int k = 2;
+        int arr[] = {1,3,-1,-3,5,3,6,7};
+        int k = 3;
+        PriorityQueue<pair> pq = new PriorityQueue<>();
+        int ans[] = new int[arr.length - k + 1];
+        int idx = 0;
 
-        PriorityQueue<row> pq =new PriorityQueue<>();
-        for(int j = 0; j < army.length; j++){
-            int count = 0;
-            for(int i = 0; i < army[0].length; i++){
-                count += army[j][i] ==1 ? 1 : 0;
-            }
-            pq.add(new row(count, j));
-        }
+        //first window
         for(int i = 0; i < k; i++){
-            System.out.println(pq.remove().idx);
+            pq.add(new pair(arr[i], i));
         }
+        ans[idx++] = pq.peek().value;
+
+        //rest of the window
+        for(int i = k; i < arr.length; i++){
+            //remove
+            while(!pq.isEmpty() && pq.peek().idx <= i - k){
+                pq.remove();
+            }
+            //add
+            pq.add(new pair(arr[i], i));
+            ans[idx++] = pq.peek().value;
+        }
+
+        System.out.println(Arrays.toString(ans));
     }
+
 }
