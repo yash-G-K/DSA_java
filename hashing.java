@@ -231,28 +231,62 @@
 
 // majority element - > n/3 times
 import java.util.*;
-public class hashing{
-    public static void main(String[] args) {
-        int arr[] = {1,3,2,1,2,1,3,1,3};
-        int n = arr.length;
-        HashMap<Integer,Integer> map = new HashMap<>();
-        for(int i  =0; i<n; i++){
-            if(map.containsKey(arr[i])){
-                map.put(arr[i],map.get(arr[i])+1);
-            }else{
-                map.put(arr[i],1);
-                //one line solution
-        //   map.put(arr[i],map.getOrDefault(arr[i],0) + 1);
-            }
-        }
+
+// public class hashing{
+//     public static void main(String[] args) {
+//         int arr[] = {1,3,2,1,2,1,3,1,3};
+//         int n = arr.length;
+//         HashMap<Integer,Integer> map = new HashMap<>();
+//         for(int i  =0; i<n; i++){
+//             if(map.containsKey(arr[i])){
+//                 map.put(arr[i],map.get(arr[i])+1);
+//             }else{
+//                 map.put(arr[i],1);
+//                 //one line solution
+//         //   map.put(arr[i],map.getOrDefault(arr[i],0) + 1);
+//             }
+//         }
         
 
-        Set<Integer> keys = map.keySet();
-        for(Integer k : keys){
-            if(map.get(k) > n/3){
-                System.out.println(k);
-            }
+//         Set<Integer> keys = map.keySet();
+//         for(Integer k : keys){
+//             if(map.get(k) > n/3){
+//                 System.out.println(k);
+//             }
+//         }
+//     }
+// }
+
+
+//valid anagram
+public class hashing{
+    public static boolean isanagram(String s, String s2){
+        if(s.length() != s2.length()){
+            return false;
+        }
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(int i =0;i<s.length();i++){
+            char ch =s.charAt(i);
+            map.put(ch,map.getOrDefault(ch, 0) + 1);
         }
 
+        for(int i =0;i<s2.length();i++){
+            char ch =s2.charAt(i);
+            if(map.containsKey(ch)){
+                if(map.get(ch) == 1){
+                    map.remove(ch);
+                }else{
+                    map.put(ch,map.get(ch)-1);
+                }
+            }else{
+                return false;
+            }
+        }
+        return map.isEmpty();
     }
-}
+    public static void main(String[] args) {
+        String s1 = "race";
+        String s2 = "care";
+            System.out.println(isanagram(s1,s2));
+        }
+    }
