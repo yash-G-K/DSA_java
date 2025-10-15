@@ -295,30 +295,71 @@ import java.util.*;
 
 // HashSet
 // import java.util.*;
+// public class hashing{
+//     public static void main(String[] args) {
+//         HashSet<Integer> set = new HashSet<>();
+//         //insert O(1)
+//         set.add(1);
+//         set.add(2);
+//         set.add(3);
+//         set.add(4);
+//         set.add(2);
+//         set.add(3); //duplicate not added
+//         System.out.println(set);
+
+//         //contains O(1)
+//         System.out.println(set.contains(3));
+//         System.out.println(set.contains(6));
+
+//         //remove O(1)
+//         set.remove(3);
+//         System.out.println(set);
+
+//         //size O(1)
+//         System.out.println(set.size());
+
+//         //empty O(1)
+//         System.out.println(set.isEmpty());
+//     }
+// }
+
+//
+
+// Iterateor in hashset
 public class hashing{
     public static void main(String[] args) {
-        HashSet<Integer> set = new HashSet<>();
-        //insert O(1)
+        HashSet<Integer> set =  new HashSet<>();
+        //Random order
         set.add(1);
         set.add(2);
         set.add(3);
         set.add(4);
-        set.add(2);
-        set.add(3); //duplicate not added
         System.out.println(set);
 
-        //contains O(1)
-        System.out.println(set.contains(3));
-        System.out.println(set.contains(6));
+        // //iterator
+        // Iterator it = set.iterator();
+        // while(it.hasNext()){
+        //     System.out.println(it.next());
 
-        //remove O(1)
-        set.remove(3);
-        System.out.println(set);
+        //for each
+        // for(int n : set){
+        //     System.err.println("n = " + n);
 
-        //size O(1)
-        System.out.println(set.size());
+        LinkedHashSet<Integer> set2 = new LinkedHashSet<>();
+        //preserve the order of insertion
+        set2.add(1);
+        set2.add(2);
+        set2.add(3);
+        set2.add(4);
 
-        //empty O(1)
-        System.out.println(set.isEmpty());
-    }
-}
+        System.out.println(set2);
+
+        TreeSet<Integer> set3 = new TreeSet<>();
+        //sorted order in alphabetical or numerical order
+        set3.add(4);
+        set3.add(6);
+        set3.add(1);
+        set3.add(3);
+        System.out.println(set3);        
+        }
+        }
