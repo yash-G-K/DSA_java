@@ -326,40 +326,85 @@ import java.util.*;
 //
 
 // Iterateor in hashset
+// public class hashing{
+//     public static void main(String[] args) {
+//         HashSet<Integer> set =  new HashSet<>();
+//         //Random order
+//         set.add(1);
+//         set.add(2);
+//         set.add(3);
+//         set.add(4);
+//         System.out.println(set);
+
+//         // //iterator
+//         // Iterator it = set.iterator();
+//         // while(it.hasNext()){
+//         //     System.out.println(it.next());
+
+//         //for each
+//         // for(int n : set){
+//         //     System.err.println("n = " + n);
+
+//         LinkedHashSet<Integer> set2 = new LinkedHashSet<>();
+//         //preserve the order of insertion
+//         set2.add(1);
+//         set2.add(2);
+//         set2.add(3);
+//         set2.add(4);
+
+//         System.out.println(set2);
+
+//         TreeSet<Integer> set3 = new TreeSet<>();
+//         //sorted order in alphabetical or numerical order
+//         set3.add(4);
+//         set3.add(6);
+//         set3.add(1);
+//         set3.add(3);
+//         System.out.println(set3);        
+//         }
+//         }
+
+
+
+//count distinct elements in an array
+// public class hashing{
+//     public static void main(String[] args) {
+//         int arr[] = {1,2,3,4,1,2,5,6,7};
+//         HashSet<Integer> set = new HashSet<>();
+//         for(int i =0;i<arr.length;i++){
+//             set.add(arr[i]);
+//         }
+//         System.out.println(set.size());
+//     }
+// }
+
+// union and intersection of two arrays
 public class hashing{
     public static void main(String[] args) {
-        HashSet<Integer> set =  new HashSet<>();
-        //Random order
-        set.add(1);
-        set.add(2);
-        set.add(3);
-        set.add(4);
-        System.out.println(set);
-
-        // //iterator
-        // Iterator it = set.iterator();
-        // while(it.hasNext()){
-        //     System.out.println(it.next());
-
-        //for each
-        // for(int n : set){
-        //     System.err.println("n = " + n);
-
-        LinkedHashSet<Integer> set2 = new LinkedHashSet<>();
-        //preserve the order of insertion
-        set2.add(1);
-        set2.add(2);
-        set2.add(3);
-        set2.add(4);
-
-        System.out.println(set2);
-
-        TreeSet<Integer> set3 = new TreeSet<>();
-        //sorted order in alphabetical or numerical order
-        set3.add(4);
-        set3.add(6);
-        set3.add(1);
-        set3.add(3);
-        System.out.println(set3);        
+        int arr[] ={7,3,9};
+        int arr2[] ={6,3,2,9,7,4};
+        //union of two arrays
+        HashSet<Integer> h= new HashSet<>();
+        for(int i=0;i<arr.length;i++){
+            h.add(arr[i]);
         }
+        for(int i=0;i<arr2.length;i++){
+            h.add(arr2[i]);
         }
+        System.out.println("union = " + h.size());
+
+        //intersection of two arrays
+        int count =0;
+        HashSet<Integer> h2 = new HashSet<>();
+        for(int i=0;i<arr.length;i++){
+            h2.add(arr[i]);
+        }
+        for(int i=0;i<arr2.length;i++){
+            if(h2.contains(arr2[i])){
+                count++;
+                h2.remove(arr2[i]); //to avoid counting duplicates
+            }
+        }
+        System.out.println("intersection = " + count);
+    }
+}
