@@ -232,179 +232,37 @@
 // majority element - > n/3 times
 import java.util.*;
 
-// public class hashing{
-//     public static void main(String[] args) {
-//         int arr[] = {1,3,2,1,2,1,3,1,3};
-//         int n = arr.length;
-//         HashMap<Integer,Integer> map = new HashMap<>();
-//         for(int i  =0; i<n; i++){
-//             if(map.containsKey(arr[i])){
-//                 map.put(arr[i],map.get(arr[i])+1);
-//             }else{
-//                 map.put(arr[i],1);
-//                 //one line solution
-//         //   map.put(arr[i],map.getOrDefault(arr[i],0) + 1);
-//             }
-//         }
-        
-
-//         Set<Integer> keys = map.keySet();
-//         for(Integer k : keys){
-//             if(map.get(k) > n/3){
-//                 System.out.println(k);
-//             }
-//         }
-//     }
-// }
-
-
-//valid anagram
-// public class hashing{
-//     public static boolean isanagram(String s, String s2){
-//         if(s.length() != s2.length()){
-//             return false;
-//         }
-//         HashMap<Character,Integer> map = new HashMap<>();
-//         for(int i =0;i<s.length();i++){
-//             char ch =s.charAt(i);
-//             map.put(ch,map.getOrDefault(ch, 0) + 1);
-//         }
-
-//         for(int i =0;i<s2.length();i++){
-//             char ch =s2.charAt(i);
-//             if(map.containsKey(ch)){
-//                 if(map.get(ch) == 1){
-//                     map.remove(ch);
-//                 }else{
-//                     map.put(ch,map.get(ch)-1);
-//                 }
-//             }else{
-//                 return false;
-//             }
-//         }
-//         return map.isEmpty();
-//     }
-//     public static void main(String[] args) {
-//         String s1 = "race";
-//         String s2 = "care";
-//             System.out.println(isanagram(s1,s2));
-//         }
-//     }
-
-
-
-// HashSet
-// import java.util.*;
-// public class hashing{
-//     public static void main(String[] args) {
-//         HashSet<Integer> set = new HashSet<>();
-//         //insert O(1)
-//         set.add(1);
-//         set.add(2);
-//         set.add(3);
-//         set.add(4);
-//         set.add(2);
-//         set.add(3); //duplicate not added
-//         System.out.println(set);
-
-//         //contains O(1)
-//         System.out.println(set.contains(3));
-//         System.out.println(set.contains(6));
-
-//         //remove O(1)
-//         set.remove(3);
-//         System.out.println(set);
-
-//         //size O(1)
-//         System.out.println(set.size());
-
-//         //empty O(1)
-//         System.out.println(set.isEmpty());
-//     }
-// }
-
-//
-
-// Iterateor in hashset
-// public class hashing{
-//     public static void main(String[] args) {
-//         HashSet<Integer> set =  new HashSet<>();
-//         //Random order
-//         set.add(1);
-//         set.add(2);
-//         set.add(3);
-//         set.add(4);
-//         System.out.println(set);
-
-//         // //iterator
-//         // Iterator it = set.iterator();
-//         // while(it.hasNext()){
-//         //     System.out.println(it.next());
-
-//         //for each
-//         // for(int n : set){
-//         //     System.err.println("n = " + n);
-
-//         LinkedHashSet<Integer> set2 = new LinkedHashSet<>();
-//         //preserve the order of insertion
-//         set2.add(1);
-//         set2.add(2);
-//         set2.add(3);
-//         set2.add(4);
-
-//         System.out.println(set2);
-
-//         TreeSet<Integer> set3 = new TreeSet<>();
-//         //sorted order in alphabetical or numerical order
-//         set3.add(4);
-//         set3.add(6);
-//         set3.add(1);
-//         set3.add(3);
-//         System.out.println(set3);        
-//         }
-//         }
-
-
-
-//count distinct elements in an array
-// public class hashing{
-//     public static void main(String[] args) {
-//         int arr[] = {1,2,3,4,1,2,5,6,7};
-//         HashSet<Integer> set = new HashSet<>();
-//         for(int i =0;i<arr.length;i++){
-//             set.add(arr[i]);
-//         }
-//         System.out.println(set.size());
-//     }
-// }
-
-// union and intersection of two arrays
-public class hashing{
-    public static void main(String[] args) {
-        int arr[] ={7,3,9};
-        int arr2[] ={6,3,2,9,7,4};
-        //union of two arrays
-        HashSet<Integer> h= new HashSet<>();
-        for(int i=0;i<arr.length;i++){
-            h.add(arr[i]);
+public class hashing {
+    public static String getStart(HashMap<String, String> map) {
+        HashMap<String, String> revmap = new HashMap<>();
+        for (String key : map.keySet()) {
+            revmap.put(map.get(key), key);
         }
-        for(int i=0;i<arr2.length;i++){
-            h.add(arr2[i]);
-        }
-        System.out.println("union = " + h.size());
 
-        //intersection of two arrays
-        int count =0;
-        HashSet<Integer> h2 = new HashSet<>();
-        for(int i=0;i<arr.length;i++){
-            h2.add(arr[i]);
-        }
-        for(int i=0;i<arr2.length;i++){
-            if(h2.contains(arr2[i])){
-                count++;
-                h2.remove(arr2[i]); //to avoid counting duplicates
+        for (String key : map.keySet()) {
+            if (!revmap.containsKey(key)) {
+                return key; // starting point
             }
         }
-        System.out.println("intersection = " + count);
+        return null;
+    }
+
+    public static void main(String[] args) {
+        HashMap<String, String> map = new HashMap<>();
+            map.put("Chennai", "Banglore");
+            map.put("Mumbai", "Delhi");
+            map.put("Goa", "Chennai");
+            map.put("Delhi", "Goa");
+
+        // ✅ Find the starting point
+        String start = getStart(map);
+
+        // ✅ Print full route
+        System.out.print(start);
+        while (map.containsKey(start)) {
+            System.out.print(" -> " + map.get(start));
+            start = map.get(start);
+        }
+        System.out.println();
     }
 }
